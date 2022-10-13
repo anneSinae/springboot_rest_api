@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.board;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class TestRepository {
+public class BoardRepository {
 	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	
-	public TestRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+	public BoardRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 

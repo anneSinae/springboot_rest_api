@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.board;
 
 import java.util.List;
 
@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.User;
 
 @RestController
-public class TestController {
+public class BoardController {
 	
-	private TestService testService;
-	
+	private BoardService boardService;
+
 	@Autowired
-	public TestController(TestService restService) {
-		this.testService = restService;
+	public BoardController(BoardService boardService) {
+		this.boardService = boardService;
 	}
 	
-	@GetMapping("/info")
+	@GetMapping("/info2")
 	public Object restInfo() {
-		//User users = testService.getUsersInfo();
-		List<User> userList = testService.getUserList();
+		List<User> userList = boardService.getUserList();
 		return userList;
 	}
 }
