@@ -11,7 +11,13 @@
     <body>
         <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
         <div layout:fragment="content" class="content">
-            board
+            <table>
+                <th:block th:each="rl : ${userList}">
+                    <tr>
+                        <td th:text="${ rl }"></td>
+                    </tr>
+                </th:block>
+            </table>
         </div>
         <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>	
     </body>
