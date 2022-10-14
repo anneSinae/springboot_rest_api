@@ -37,9 +37,8 @@ dependencies {
 	// springboot annotation
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	
-	// jsp
-	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'javax.servlet:jstl'
+	// Thymeleaf : View Templete Engine(without jsp, servlet)
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {

@@ -14,8 +14,7 @@ public class BoardController {
 	
 	@GetMapping("")
 	public ModelAndView Hello() {
-		ModelAndView view = new ModelAndView(this.basePath + "main");
-		return view;
+		return new ModelAndView(this.basePath + "main");
 	}
 	
 }

@@ -1,4 +1,5 @@
 spring:
+  # db
   datasource:
     url: jdbc:mariadb://localhost:3306/sample?serverTimeZone=UTC&CharacterEncoding=UTF-8
     driver-class-name: org.mariadb.jdbc.Driver
@@ -12,14 +13,23 @@ spring:
       minimum-idle: 10
       idle-timeout: 600000
       max-lifetime: 1800000
-      
+  
+  # file
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-      location: C:\\Users\\User\\worksample\\sample\\src\\main\\webapp\\WEB-INF\\upload
+      location: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\upload
   
-  mvc:
-    view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+  # reload static resourses changes directly
+  devtools:
+    livereload:
+      enabled: true
+  
+  # View Templete Engine
+  thymeleaf:
+      prefix: classpath:templates/
+      suffix: .html
+      mode: HTML5
+      cache: false
+      check-template-location: true
