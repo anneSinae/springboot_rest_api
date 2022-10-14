@@ -28,8 +28,16 @@ spring:
   
   # View Templete Engine
   thymeleaf:
-      prefix: classpath:templates/
-      suffix: .html
-      mode: HTML5
-      cache: false
-      check-template-location: true
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+    check-template-location: true
+   
+#####
+ 
+# slf4j
+logging:
+    file:
+      name: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\upload\\logback.log
+      max-size: 500MB
+      max-history: 10

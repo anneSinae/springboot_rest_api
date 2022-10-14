@@ -21,7 +21,7 @@ public class BoardRepository {
 	}
 
 	public List<User> findList(){
-		String sql = "select * from users limit 10";
+		String sql = "select * from board";
 		
 		log.debug("query : {}", sql);
 		
