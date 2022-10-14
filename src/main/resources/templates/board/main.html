@@ -12,9 +12,9 @@
         <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
         <div layout:fragment="content" class="content">
             <table>
-                <th:block th:each="rl : ${userList}">
+                <th:block th:each="item : ${userList}">
                     <tr>
-                        <td th:text="${ rl }"></td>
+                        <td th:text="${item.name}"></td><td th:text="${item.email}"></td>
                     </tr>
                 </th:block>
             </table>
