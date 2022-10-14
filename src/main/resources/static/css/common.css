@@ -1,0 +1,7 @@
+@charset "utf-8";
+
+* {padding: 0; margin: 0; box-sizing: border-box; color: #a0a1a5; font-size: 13px;}
+body {background: #38383e;}
+header {height: 5vh; border-bottom: 1px solid #26262e;}
+footer {height: 5vh; border-top: 1px solid rgba(150, 150, 150, 0.2);}
+.content {height: 90vh; border-top: 1px solid #484848;}

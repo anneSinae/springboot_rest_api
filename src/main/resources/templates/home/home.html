@@ -5,13 +5,13 @@
       layout:decorate="~{include/layout}">
     
     <th:block layout:fragment="head">
-    	<title>test board</title>
+    	<title>Anne layout test</title>
         <link th:href="@{/css/common.css}" rel="stylesheet" />
     </th:block>
     <body>
         <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
         <div layout:fragment="content" class="content">
-            board
+            Home
         </div>
         <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>	
     </body>
