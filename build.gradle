@@ -19,14 +19,27 @@ repositories {
 }
 
 dependencies {
+	// springboot for restful
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	compileOnly 'org.projectlombok:lombok'
+	
+	//update browser
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	// db
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	
+	// lombok
+	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	
+	// springboot annotation
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	
+	// jsp
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    implementation 'javax.servlet:jstl'
 }
 
 tasks.named('test') {

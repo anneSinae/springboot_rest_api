@@ -49,7 +49,7 @@ public class FileController {
 		return new ResponseEntity<>("", HttpStatus.OK);
 	}
 	
-	@GetMapping(value="download") //localhost:8080/info/download?filename=images.jpg
+	@GetMapping(value="download") //localhost:8080/info/download?filename=images.png
     public ResponseEntity<Resource> serveFile(@RequestParam(value="filename") String filename) {
 
         Resource file = storageService.loadAsResource(filename);

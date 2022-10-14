@@ -1,26 +1,21 @@
 package com.example.demo.board;
 
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.model.User;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
+@RequestMapping("board")
 public class BoardController {
 	
-	private BoardService boardService;
-
-	@Autowired
-	public BoardController(BoardService boardService) {
-		this.boardService = boardService;
+	private String basePath = "/board/";
+	
+	@GetMapping("")
+	public ModelAndView Hello() {
+		ModelAndView view = new ModelAndView(this.basePath + "main");
+		return view;
 	}
 	
-	@GetMapping("/info2")
-	public Object restInfo() {
-		List<User> userList = boardService.getUserList();
-		return userList;
-	}
 }
