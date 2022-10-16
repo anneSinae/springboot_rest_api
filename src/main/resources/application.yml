@@ -38,6 +38,6 @@ spring:
 # slf4j
 logging:
     file:
-      name: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\upload\\logback.log
+      name: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\log\\logback.log
       max-size: 500MB
       max-history: 10
