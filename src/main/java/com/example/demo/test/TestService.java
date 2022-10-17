@@ -35,4 +35,8 @@ public class TestService {
 	public User insert(User user) {
 		return this.testRepository.insert(user);
 	}
+	
+	public User update(User user) {
+		return testRepository.update(user);
+	}
 }

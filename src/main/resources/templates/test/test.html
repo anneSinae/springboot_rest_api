@@ -4,8 +4,16 @@
 	<meta charset="UTF-8">
 	<title>test</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<style>
+		li {cursor: pointer;}
+		.form .btn_send {font-weight: bold;}
+		.form:not(.detail) .btn_insert,
+		.form:not(.detail) .btn_edit {display: none;}
+		.form.detail .btn_send {display: none;}
+	</style>
 </head>
 <body>
+<div class="form">
 	<p>
 		<strong>name</strong>
 		<input type="text" id="name" placeholder="name">
@@ -14,23 +22,33 @@
 		<strong>email</strong>
 		<input type="text" id="email" placeholder="email">
 	</p>
-	<p>
-		<input type="submit" value="insert" class="btn_send">
-	</p>
+	<button type="button" class="btn_insert">insert</button>
+	<button type="button" class="btn_send">send</button>
+	<button type="button" class="btn_edit">edit</button>
+</div>
 <hr>
 <ul th:fragment="users_wrap" class="users_wrap">
 	<li th:each="item : ${userList}">
-	    <span th:text="${item.name}"></span><span th:text="${item.email}"></span>
+	    <span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
 	</li>
 </ul>
 <script>
+/* 데이터 추가 */
+$(".btn_insert").on("click", function() {
+	$(".form").removeClass("detail");
+	$(".form input").val("");
+});
 $(".btn_send").on("click", function() {
 	var paramUser = {
 		"name": document.getElementById('name').value,
 		"email":  document.getElementById('email').value,
 	};
+	if(!paramUser.name || !paramUser.email) {
+		alert("no data");
+		return;
+	}
 	$.ajax({
-	  type: 'POST',
+	  type: 'PUT',
 	  url: '/info/users/user',
 	  data: JSON.stringify(paramUser),
 	  dataType: "json",
@@ -38,18 +56,49 @@ $(".btn_send").on("click", function() {
 	  success: function(data) {
 		  reloadList();
 	  }
+	});	
+});
+
+function reloadList() {
+	$.ajax({
+	  type: 'GET',
+	  url: '/info/users/list',
+	  success: function(data) {
+		  $(".users_wrap").replaceWith(data);
+	  }
 	});
-	
-	function reloadList() {
-		$.ajax({
-		  type: 'GET',
-		  url: '/info/users/list',
-		  success: function(data) {
-			  $(".users_wrap").replaceWith(data);
-		  }
-		});
-	}
-	
+}
+
+/* 데이터 선택항목 보기 */
+$("li").on("click", function(idx) {
+	$(".form").addClass("detail");
+	$.ajax({
+	  type: 'GET',
+	  url: '/info/users?name=' + $(this).find(".name").text(),
+	  success: function(data) {
+		  $("#name").val(data[0].name);
+		  $("#email").val(data[0].email);
+	  }
+	});
+});
+
+/* 데이터 선택항목 수정 */
+$(".btn_edit").on("click", function(idx) {
+	var paramUser = {
+		"name": document.getElementById('name').value,
+		"email":  document.getElementById('email').value,
+	};
+	$.ajax({
+	  type: 'POST',
+	  url: '/info/users/user/' + paramUser.name,
+	  data: JSON.stringify(paramUser),
+	  dataType: "json",
+	  contentType: "application/json; charset=UTF-8",
+	  success: function(data) {
+		  console.log(data, "data")
+		  reloadList();
+	  }
+	});
 });
 	
 </script>

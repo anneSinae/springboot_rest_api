@@ -66,4 +66,17 @@ public class TestRepository {
 		//user.setId(keyHolder.getKey().intValue());
 		return user;
 	}
+	
+	public User update(User user) {
+		String sql = "UPDATE users SET name = :name, email = :email WHERE name=:name";
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
+				.addValue("name", user.getName())
+				.addValue("email", user.getEmail()); 
+
+		System.out.println(user.getName() + "/////////////////////");
+		namedParameterJdbcTemplate.update(sql, param, keyHolder);
+		return user;
+	}
 }
