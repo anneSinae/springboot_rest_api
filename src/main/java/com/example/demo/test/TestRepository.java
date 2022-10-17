@@ -36,9 +36,10 @@ public class TestRepository {
 	}
 	
 	public List<User> getUserListByName(String name){
-		String sql = "select * from users where name='" + name + "'";
+		String sql = "select * from users where name=:name";
 		
 		log.debug("query : {}", sql);
+		MapSqlParameterSource param = new MapSqlParameterSource("name", name);
 		
 		RowMapper<User> usersMapper = (rs, rowNum) -> {
 			User user = new User();
@@ -47,7 +48,7 @@ public class TestRepository {
 			return user;
 		};
 		
-		return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(), usersMapper);
+		return namedParameterJdbcTemplate.query(sql, param, usersMapper);
 	}
 	
 }
