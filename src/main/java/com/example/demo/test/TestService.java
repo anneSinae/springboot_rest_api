@@ -31,4 +31,8 @@ public class TestService {
 	public List<User> getUserListByName(String name) {
 		return this.testRepository.getUserListByName(name);
 	}
+	
+	public User insert(User user) {
+		return this.testRepository.insert(user);
+	}
 }

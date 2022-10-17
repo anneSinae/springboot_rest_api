@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+</head>
+<body>
+	<p>
+		<strong>name</strong>
+		<input type="text" id="name" placeholder="name">
+	</p>
+	<p>
+		<strong>email</strong>
+		<input type="text" id="email" placeholder="email">
+	</p>
+	<p>
+		<input type="submit" value="insert" class="btn_send">
+	</p>
+<script>
+$(".btn_send").on("click", function() {
+	var paramUser = {
+		"name": document.getElementById('name').value,
+		"email":  document.getElementById('email').value,
+	};
+	$.ajax({
+	  type: 'POST',
+	  url: '/info/users/user',
+	  data: JSON.stringify(paramUser),
+	  dataType: "json",
+	  contentType: "application/json; charset=UTF-8",
+	  success: function(msg) {
+		  alert("추가완료");
+	  }
+	});
+});
+	
+</script>
+</body>
+</html>

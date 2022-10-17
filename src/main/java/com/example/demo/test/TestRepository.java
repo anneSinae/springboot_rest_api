@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.User;
@@ -49,6 +52,19 @@ public class TestRepository {
 		};
 		
 		return namedParameterJdbcTemplate.query(sql, param, usersMapper);
+	}
+	
+	public User insert(User user) {
+		String sql = "INSERT INTO users (name, email) values (:name, :email)";
+		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
+				.addValue("name", user.getName())
+				.addValue("email", user.getEmail()); 
+		int affectedRows = namedParameterJdbcTemplate.update(sql, param, keyHolder);
+		//log.debug("{} inserted, new name = {}", affectedRows, keyHolder.getKey());
+		//user.setId(keyHolder.getKey().intValue());
+		return user;
 	}
 	
 }
