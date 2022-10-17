@@ -17,6 +17,12 @@
 	<p>
 		<input type="submit" value="insert" class="btn_send">
 	</p>
+<hr>
+<ul th:fragment="users_wrap" class="users_wrap">
+	<li th:each="item : ${userList}">
+	    <span th:text="${item.name}"></span><span th:text="${item.email}"></span>
+	</li>
+</ul>
 <script>
 $(".btn_send").on("click", function() {
 	var paramUser = {
@@ -29,10 +35,21 @@ $(".btn_send").on("click", function() {
 	  data: JSON.stringify(paramUser),
 	  dataType: "json",
 	  contentType: "application/json; charset=UTF-8",
-	  success: function(msg) {
-		  alert("추가완료");
+	  success: function(data) {
+		  reloadList();
 	  }
 	});
+	
+	function reloadList() {
+		$.ajax({
+		  type: 'GET',
+		  url: '/info/users/list',
+		  success: function(data) {
+			  $(".users_wrap").replaceWith(data);
+		  }
+		});
+	}
+	
 });
 	
 </script>

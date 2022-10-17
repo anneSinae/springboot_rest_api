@@ -24,7 +24,7 @@ public class TestRepository {
 	}
 
 	public List<User> findList(){
-		String sql = "select * from users limit 10";
+		String sql = "select * from users";
 		
 		log.debug("query : {}", sql);
 		
@@ -61,10 +61,9 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail()); 
-		int affectedRows = namedParameterJdbcTemplate.update(sql, param, keyHolder);
+		namedParameterJdbcTemplate.update(sql, param, keyHolder);
 		//log.debug("{} inserted, new name = {}", affectedRows, keyHolder.getKey());
 		//user.setId(keyHolder.getKey().intValue());
 		return user;
 	}
-	
 }

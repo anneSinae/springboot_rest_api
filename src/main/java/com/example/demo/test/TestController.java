@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,9 +33,11 @@ public class TestController {
 	
 	@GetMapping("")
 	public Object testInfo() {
-		//User users = testService.getUsersInfo();
+		ModelAndView view = new ModelAndView("test/test");
+		
 		List<User> userList = testService.getUserList();
-		return userList;
+		view.addObject("userList", userList);
+		return view;
 	}
 	
 	@GetMapping("users/{name}") //http://localhost:8080/info/users/원펀맨
@@ -60,9 +63,12 @@ public class TestController {
 		}
 	}
 	
-	@GetMapping("users/form")
-	public ModelAndView viewForm() {
-		ModelAndView view = new ModelAndView("test/test");
-		return view;
+	@GetMapping(value="users/list")
+	public Object reloadList(Model map) {
+		ModelAndView view = new ModelAndView("test/test :: users_wrap");
+		
+		List<User> userList = testService.getUserList();
+		view.addObject("userList", userList);
+	    return view;
 	}
 }
