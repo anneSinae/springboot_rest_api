@@ -36,7 +36,7 @@ public class TestService {
 		return this.testRepository.insert(user);
 	}
 	
-	public User update(User user) {
+	public int update(User user) {
 		return testRepository.update(user);
 	}
 }

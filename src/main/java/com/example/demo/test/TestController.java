@@ -56,13 +56,7 @@ public class TestController {
 	
 	@PutMapping(value="users/user")
 	public ResponseEntity<User> testAdd(@RequestBody User user) {
-		try {
-			log.trace("user = {}", user.toString());
-			return new ResponseEntity<>(testService.insert(user), HttpStatus.OK);
-		}catch (Exception e) {
-			log.error(e.toString());
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		return new ResponseEntity<>(testService.insert(user), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="users/list")
@@ -74,13 +68,8 @@ public class TestController {
 	    return view;
 	}
 	
-	@PostMapping(value="users/user/{name}")
-	public ResponseEntity<User> testUpdate(@RequestBody User user) {
-		try {
-			return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
-		}catch (Exception e) {
-			log.error(e.toString());
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+	@PutMapping(value="users/user/{id}")
+	public Object testUpdate(@RequestBody User user) {
+		return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
 	}
 }

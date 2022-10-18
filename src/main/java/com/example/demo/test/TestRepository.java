@@ -3,6 +3,7 @@ package com.example.demo.test;
 import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -25,58 +26,43 @@ public class TestRepository {
 
 	public List<User> findList(){
 		String sql = "select * from users";
-		
-		log.debug("query : {}", sql);
-		
 		RowMapper<User> usersMapper = (rs, rowNum) -> {
 			User user = new User();
+			user.setId(rs.getInt("id"));
 			user.setName(rs.getString("name"));
 			user.setEmail(rs.getString("email"));
 			return user;
 		};
-		
 		return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(), usersMapper);
 	}
 	
 	public List<User> getUserListByName(String name){
 		String sql = "select * from users where name=:name";
-		
-		log.debug("query : {}", sql);
 		MapSqlParameterSource param = new MapSqlParameterSource("name", name);
-		
 		RowMapper<User> usersMapper = (rs, rowNum) -> {
 			User user = new User();
+			user.setId(rs.getInt("id"));
 			user.setName(rs.getString("name"));
 			user.setEmail(rs.getString("email"));
 			return user;
 		};
-		
 		return namedParameterJdbcTemplate.query(sql, param, usersMapper);
 	}
 	
 	public User insert(User user) {
 		String sql = "INSERT INTO users (name, email) values (:name, :email)";
-		
-		KeyHolder keyHolder = new GeneratedKeyHolder();
 		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail()); 
-		namedParameterJdbcTemplate.update(sql, param, keyHolder);
-		//log.debug("{} inserted, new name = {}", affectedRows, keyHolder.getKey());
-		//user.setId(keyHolder.getKey().intValue());
+		namedParameterJdbcTemplate.update(sql, param);
 		return user;
 	}
 	
-	public User update(User user) {
-		String sql = "UPDATE users SET name = :name, email = :email WHERE name=:name";
-		
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
+	public int update(User user) {
+		String sql = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+		SqlParameterSource param = new MapSqlParameterSource("id", user.getId())
 				.addValue("name", user.getName())
-				.addValue("email", user.getEmail()); 
-
-		System.out.println(user.getName() + "/////////////////////");
-		namedParameterJdbcTemplate.update(sql, param, keyHolder);
-		return user;
+				.addValue("email", user.getEmail());
+		return namedParameterJdbcTemplate.update(sql, param);
 	}
 }
