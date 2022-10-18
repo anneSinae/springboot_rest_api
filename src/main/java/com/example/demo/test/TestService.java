@@ -17,13 +17,6 @@ public class TestService {
 		this.testRepository = testRepository;
 	}
 
-	public User getUsersInfo() {
-		User user = new User();
-		user.setName("유신애");
-		user.setEmail("anne@test.com");
-		return user;
-	}
-
 	public List<User> getUserList() {
 		return this.testRepository.findList();
 	}

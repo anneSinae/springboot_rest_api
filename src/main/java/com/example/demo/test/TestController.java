@@ -37,7 +37,6 @@ public class TestController {
 	@GetMapping("")
 	public Object testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
-		
 		List<User> userList = testService.getUserList();
 		view.addObject("userList", userList);
 		return view;
@@ -63,7 +62,6 @@ public class TestController {
 	@GetMapping(value="users/list")
 	public Object reloadList(Model map) {
 		ModelAndView view = new ModelAndView("test/test :: users_wrap");
-		
 		List<User> userList = testService.getUserList();
 		view.addObject("userList", userList);
 	    return view;
@@ -71,13 +69,11 @@ public class TestController {
 	
 	@PutMapping(value="users/user/{id}")
 	public Object testUpdate(@RequestBody User user) {
-		System.out.println("testUpdate//////////////" + user);
 		return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="users/user/del")
 	public Object testDelete(@RequestParam(value = "id") int id) {
-		System.out.println("id con//////////////" + id);
 		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
 	}
 }

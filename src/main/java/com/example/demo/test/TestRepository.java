@@ -18,10 +18,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Repository
 public class TestRepository {
-	private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+	private final NamedParameterJdbcTemplate jdpcTmpl;
 	
-	public TestRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+	public TestRepository(NamedParameterJdbcTemplate jdpcTmpl) {
+		this.jdpcTmpl = jdpcTmpl;
 	}
 
 	public List<User> findList(){
@@ -33,7 +33,7 @@ public class TestRepository {
 			user.setEmail(rs.getString("email"));
 			return user;
 		};
-		return namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource(), usersMapper);
+		return jdpcTmpl.query(sql, new MapSqlParameterSource(), usersMapper);
 	}
 	
 	public List<User> getUserListByName(String name){
@@ -46,7 +46,7 @@ public class TestRepository {
 			user.setEmail(rs.getString("email"));
 			return user;
 		};
-		return namedParameterJdbcTemplate.query(sql, param, usersMapper);
+		return jdpcTmpl.query(sql, param, usersMapper);
 	}
 	
 	public User insert(User user) {
@@ -54,22 +54,21 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource("name", user.getName())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail()); 
-		namedParameterJdbcTemplate.update(sql, param);
+		jdpcTmpl.update(sql, param);
 		return user;
 	}
 	
 	public int update(User user) {
-		String sql = "UPDATE users SET name = :name, email = :email WHERE id = :id";
+		String sql = "UPDATE users SET name = :name, email = :email WHERE id = :id"; //where조건은 사용자 변경없는 컬럼 사용 
 		SqlParameterSource param = new MapSqlParameterSource("id", user.getId())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail());
-		return namedParameterJdbcTemplate.update(sql, param);
+		return jdpcTmpl.update(sql, param);
 	}
 	
 	public int delete(int id) {
 		String sql = "DELETE from users WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource("id", id);
-		System.out.println("id//////////////" + id);
-		return namedParameterJdbcTemplate.update(sql, param);
+		return jdpcTmpl.update(sql, param);
 	}
 }
