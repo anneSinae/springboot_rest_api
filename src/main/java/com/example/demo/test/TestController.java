@@ -37,8 +37,7 @@ public class TestController {
 	@GetMapping("")
 	public Object testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
-		List<User> userList = testService.getUserList();
-		view.addObject("userList", userList);
+		view.addObject("userList", testService.getUserList());
 		return view;
 	}
 	
@@ -55,25 +54,24 @@ public class TestController {
 	}
 	
 	@GetMapping(value="list")
-	public Object reloadList(Model map) {
+	public ModelAndView reloadList(Model map) {
 		ModelAndView view = new ModelAndView("test/test :: users_wrap");
-		List<User> userList = testService.getUserList();
-		view.addObject("userList", userList);
+		view.addObject("userList", testService.getUserList());
 	    return view;
 	}
 	
 	@PutMapping(value="user")
 	public ResponseEntity<User> testAdd(@RequestBody User user) {
 		return new ResponseEntity<>(testService.insert(user), HttpStatus.OK);
-	}
+	}/*ResponseEntity<> : Http상태, 응답헤더, 응답데이터 등을 포함 */
 	
 	@PutMapping(value="manage/{id}")
-	public Object testUpdate(@RequestBody User user) {
+	public ResponseEntity<Integer> testUpdate(@RequestBody User user) {
 		return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="manage/user")
-	public Object testDelete(@RequestParam(value = "id") int id) {
+	public ResponseEntity<Integer> testDelete(@RequestParam(value = "id") int id) {
 		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
 	}
 }
