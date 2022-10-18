@@ -1,8 +1,12 @@
 package com.example.demo.test;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -35,26 +39,26 @@ public class TestController {
 	}
 	
 	@GetMapping("")
-	public Object testInfo() {
+	public ModelAndView testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
 		view.addObject("userList", testService.getUserList());
 		return view;
 	}
 	
 	@GetMapping("detail/{name}") //http://localhost:8080/info/users/원펀맨
-	public Object testInfoByPathVariable(@PathVariable("name") String name) {
+	public List<User> testInfoByPathVariable(@PathVariable("name") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;
 	}
 
 	@GetMapping("detail") //http://localhost:8080/info/users?name=원펀맨
-	public Object testInfoRequestParam(@RequestParam(value = "name", required = false, defaultValue = "홍길동") String name) {
+	public List<User> testInfoRequestParam(@RequestParam(value = "name", required = false, defaultValue = "홍길동") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;
 	}
 	
 	@GetMapping(value="list")
-	public ModelAndView reloadList(Model map) {
+	public ModelAndView reloadList() {
 		ModelAndView view = new ModelAndView("test/test :: users_wrap");
 		view.addObject("userList", testService.getUserList());
 	    return view;
@@ -73,5 +77,15 @@ public class TestController {
 	@DeleteMapping(value="manage/user")
 	public ResponseEntity<Integer> testDelete(@RequestParam(value = "id") int id) {
 		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="manage/user2")
+	public ResponseEntity<Object> testDelete2(@RequestParam Map<String, Object> param) throws URISyntaxException {
+		Integer delId = Integer.valueOf(param.get("delId").toString());
+		testService.delete(delId);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setLocation(new URI("http://localhost:8080/users"));
+        return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
+		
 	}
 }

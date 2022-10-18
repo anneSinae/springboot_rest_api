@@ -34,6 +34,9 @@
 	<button type="button" class="btn_send">send</button>
 	<button type="button" class="btn_edit">edit</button>
 </div>
+<form id="delByForm">
+	<input type="hidden" name="delId">
+</form>
 <hr>
 <ul th:fragment="users_wrap" class="users_wrap">
 	<li th:each="item : ${userList}">
@@ -76,6 +79,7 @@ function reloadList() {
 	  success: function(data) {
 		  $(".users_wrap").replaceWith(data);
 		  itemViewEvent();
+		  itemDelEvent();
 	  }
 	});
 }
@@ -119,17 +123,28 @@ $(".btn_edit").on("click", function(e) {
 
 
 /******* 데이터 삭제 *******/
-$("li button").on("click", function(e) {
-	var thisBtn = $(this);
-	$.ajax({
-	  type: 'DELETE',
-	  url: '/users/manage/user?id=' + parseInt($(this).siblings(".id").text()),
-	  success: function(data) {
-		  thisBtn.parent().remove();
-	  }
+function itemDelEvent() {
+	$("li button").on("click", function(e) {
+		var thisBtn = $(this);
+		/* ajax방식 */
+		$.ajax({
+		  type: 'DELETE',
+		  url: '/users/manage/user?id=' + parseInt($(this).siblings(".id").text()),
+		  success: function(data) {
+			  thisBtn.parent().remove();
+		  }
+		});
+		/* form방식
+		$("#delByForm input").val($(this).siblings(".id").text());
+		$("#delByForm").attr({
+			action: "/users/manage/user2",
+			method: "POST", //form only support GET, POST
+		}).submit(); //page refreshed(looks not good)
+		*/
+		
 	});
-});
-	
+}
+itemDelEvent();
 </script>
 </body>
 </html>
