@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,6 +71,13 @@ public class TestController {
 	
 	@PutMapping(value="users/user/{id}")
 	public Object testUpdate(@RequestBody User user) {
+		System.out.println("testUpdate//////////////" + user);
 		return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value="users/user/del")
+	public Object testDelete(@RequestParam(value = "id") int id) {
+		System.out.println("id con//////////////" + id);
+		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
 	}
 }

@@ -5,11 +5,11 @@
 	<title>test</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<style>
-		li {cursor: pointer; list-style: none;}
+		li {list-style: none; width: 50%;}
 		li span {display: inline-block;}
-		li span:nth-child(1) {width: 50px;}
-		li span:nth-child(2) {width: 100px;}
-		li span:nth-child(3) {width: 200px;}
+		li span:nth-child(1) {width: 10%;}
+		li span:nth-child(2) {width: 30%; cursor: pointer; }
+		li span:nth-child(3) {width: 50%;}
 		.form .btn_send {font-weight: bold;}
 		.form:not(.detail) .btn_insert,
 		.form:not(.detail) .btn_edit {display: none;}
@@ -38,10 +38,10 @@
 <ul th:fragment="users_wrap" class="users_wrap">
 	<li th:each="item : ${userList}">
 	    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
+	    <button type="button">X</button>
 	</li>
 </ul>
 <script>
-var viewNum = 0;
 /* 데이터 추가 */
 $(".btn_insert").on("click", function() {
 	$(".form").removeClass("detail");
@@ -64,6 +64,7 @@ $(".btn_send").on("click", function() {
 	  contentType: "application/json; charset=UTF-8",
 	  success: function(data) {
 		  reloadList();
+		  $(".form input").val("");
 	  }
 	});	
 });
@@ -74,32 +75,36 @@ function reloadList() {
 	  url: '/info/users/list',
 	  success: function(data) {
 		  $(".users_wrap").replaceWith(data);
+		  itemViewEvent();
 	  }
 	});
 }
 
-/* 데이터 선택항목 보기 */
-$("li").on("click", function(idx) {
-	$(".form").addClass("detail");
-	$.ajax({
-	  type: 'GET',
-	  url: '/info/users?name=' + $(this).find(".name").text(),
-	  success: function(data) {
-		  $("#id").text(data[0].id);
-		  $("#name").val(data[0].name);
-		  $("#email").val(data[0].email);
-	  }
+/* 데이터 보기 */
+function itemViewEvent() {
+	$(".users_wrap .name").on("click", function(e) {
+		$(".form").addClass("detail");
+		$.ajax({
+		  type: 'GET',
+		  url: '/info/users?name=' + $(this).text(),
+		  success: function(data) {
+			  $("#id").text(data[0].id);
+			  $("#name").val(data[0].name);
+			  $("#email").val(data[0].email);
+		  }
+		});
 	});
-});
+}
+itemViewEvent();
 
-/* 데이터 선택항목 수정 */
-$(".btn_edit").on("click", function(idx) {
+
+/* 데이터 수정 */
+$(".btn_edit").on("click", function(e) {
 	var paramUser = {
 		"id": parseInt($('#id').text()),
 		"name": document.getElementById('name').value,
 		"email":  document.getElementById('email').value,
 	};
-	console.log(paramUser, "paramUser")
 	$.ajax({
 	  type: 'PUT',
 	  url: '/info/users/user/edit' + paramUser.id,
@@ -107,8 +112,20 @@ $(".btn_edit").on("click", function(idx) {
 	  dataType: "json",
 	  contentType: "application/json; charset=UTF-8",
 	  success: function(data) {
-		  console.log(data, "data")
 		  reloadList();
+	  }
+	});
+});
+
+
+/* 데이터 삭제 */
+$("li button").on("click", function(e) {
+	var thisBtn = $(this);
+	$.ajax({
+	  type: 'DELETE',
+	  url: '/info/users/user/del?id=' + parseInt($(this).siblings(".id").text()),
+	  success: function(data) {
+		  thisBtn.parent().remove();
 	  }
 	});
 });

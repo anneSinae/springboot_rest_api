@@ -65,4 +65,11 @@ public class TestRepository {
 				.addValue("email", user.getEmail());
 		return namedParameterJdbcTemplate.update(sql, param);
 	}
+	
+	public int delete(int id) {
+		String sql = "DELETE from users WHERE id = :id";
+		SqlParameterSource param = new MapSqlParameterSource("id", id);
+		System.out.println("id//////////////" + id);
+		return namedParameterJdbcTemplate.update(sql, param);
+	}
 }

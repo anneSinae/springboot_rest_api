@@ -39,4 +39,8 @@ public class TestService {
 	public int update(User user) {
 		return testRepository.update(user);
 	}
+	
+	public int delete(int id) {
+		return testRepository.delete(id);
+	}
 }
