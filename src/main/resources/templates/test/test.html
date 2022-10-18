@@ -42,7 +42,7 @@
 	</li>
 </ul>
 <script>
-/* 데이터 추가 */
+/******* 데이터 추가 *******/
 $(".btn_insert").on("click", function() {
 	$(".form").removeClass("detail");
 	$(".form input").val("");
@@ -58,7 +58,7 @@ $(".btn_send").on("click", function() {
 	}
 	$.ajax({
 	  type: 'PUT',
-	  url: '/info/users/user',
+	  url: '/users/user',
 	  data: JSON.stringify(paramUser),
 	  dataType: "json",
 	  contentType: "application/json; charset=UTF-8",
@@ -72,7 +72,7 @@ $(".btn_send").on("click", function() {
 function reloadList() {
 	$.ajax({
 	  type: 'GET',
-	  url: '/info/users/list',
+	  url: '/users/list',
 	  success: function(data) {
 		  $(".users_wrap").replaceWith(data);
 		  itemViewEvent();
@@ -80,13 +80,13 @@ function reloadList() {
 	});
 }
 
-/* 데이터 보기 */
+/******* 데이터 보기 *******/
 function itemViewEvent() {
 	$(".users_wrap .name").on("click", function(e) {
 		$(".form").addClass("detail");
 		$.ajax({
 		  type: 'GET',
-		  url: '/info/users?name=' + $(this).text(),
+		  url: '/users/detail?name=' + $(this).text(),
 		  success: function(data) {
 			  $("#id").text(data[0].id);
 			  $("#name").val(data[0].name);
@@ -98,7 +98,7 @@ function itemViewEvent() {
 itemViewEvent();
 
 
-/* 데이터 수정 */
+/******* 데이터 수정 *******/
 $(".btn_edit").on("click", function(e) {
 	var paramUser = {
 		"id": parseInt($('#id').text()),
@@ -107,7 +107,7 @@ $(".btn_edit").on("click", function(e) {
 	};
 	$.ajax({
 	  type: 'PUT',
-	  url: '/info/users/user/edit' + paramUser.id,
+	  url: '/users/manage/' + paramUser.id,
 	  data: JSON.stringify(paramUser),
 	  dataType: "json",
 	  contentType: "application/json; charset=UTF-8",
@@ -118,12 +118,12 @@ $(".btn_edit").on("click", function(e) {
 });
 
 
-/* 데이터 삭제 */
+/******* 데이터 삭제 *******/
 $("li button").on("click", function(e) {
 	var thisBtn = $(this);
 	$.ajax({
 	  type: 'DELETE',
-	  url: '/info/users/user/del?id=' + parseInt($(this).siblings(".id").text()),
+	  url: '/users/manage/user?id=' + parseInt($(this).siblings(".id").text()),
 	  success: function(data) {
 		  thisBtn.parent().remove();
 	  }
