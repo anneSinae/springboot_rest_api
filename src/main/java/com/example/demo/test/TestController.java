@@ -64,7 +64,7 @@ public class TestController {
 	    return view;
 	}
 	
-	@PutMapping(value="user")
+	@PutMapping(value="user") //생성요청마다 ok하려면 Post, 동일데이터 생성요청시 최초요청만 ok하려면 Put
 	public ResponseEntity<User> testAdd(@RequestBody User user) {
 		return new ResponseEntity<>(testService.insert(user), HttpStatus.OK);
 	}/*ResponseEntity<> : Http상태, 응답헤더, 응답데이터 등을 포함 */
@@ -81,11 +81,10 @@ public class TestController {
 	
 	@PostMapping(value="manage/user2")
 	public ResponseEntity<Object> testDelete2(@RequestParam Map<String, Object> param) throws URISyntaxException {
-		Integer delId = Integer.valueOf(param.get("delId").toString());
-		testService.delete(delId);
+		Integer id = Integer.valueOf(param.get("delId").toString());
+		testService.delete(id);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(new URI("http://localhost:8080/users"));
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
-		
 	}
 }

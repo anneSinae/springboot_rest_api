@@ -4,6 +4,9 @@
 	<meta charset="UTF-8">
 	<title>test</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+	<script th:src="@{/js/excel/xlsx.full.min.js}"></script>
+	<script th:src="@{/js/excel/filesaver.js}"></script>
+	<script th:src="@{/js/common.js}"></script>
 	<style>
 		li {list-style: none; width: 50%;}
 		li span {display: inline-block;}
@@ -14,6 +17,7 @@
 		.form:not(.detail) .btn_insert,
 		.form:not(.detail) .btn_edit {display: none;}
 		.form.detail .btn_send {display: none;}
+		.btn_excel {position: absolute; top: 10px; right: 10px;}
 	</style>
 </head>
 <body>
@@ -44,6 +48,7 @@
 	    <button type="button">X</button>
 	</li>
 </ul>
+<!--<button type="button" class="btn_excel" onclick="downloadExcel()">excel</button>-->
 <script>
 /******* 데이터 추가 *******/
 $(".btn_insert").on("click", function() {
@@ -139,12 +144,12 @@ function itemDelEvent() {
 		$("#delByForm").attr({
 			action: "/users/manage/user2",
 			method: "POST", //form only support GET, POST
-		}).submit(); //page refreshed(looks not good)
+		}).submit(); //page refreshed(action url로 페이지이동하므로 controller 리다이렉트 필수)
 		*/
-		
 	});
 }
 itemDelEvent();
+
 </script>
 </body>
 </html>
