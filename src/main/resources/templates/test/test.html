@@ -5,7 +5,7 @@
 	<title>test</title>
 	<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 	<script th:src="@{/js/excel/xlsx.full.min.js}"></script>
-	<script th:src="@{/js/excel/filesaver.js}"></script>
+	<script th:src="@{/js/excel/file.saver.js}"></script>
 	<script th:src="@{/js/common.js}"></script>
 	<style>
 		li {list-style: none; width: 50%;}
@@ -13,19 +13,21 @@
 		li span:nth-child(1) {width: 10%;}
 		li span:nth-child(2) {width: 30%; cursor: pointer; }
 		li span:nth-child(3) {width: 50%;}
+		.form {display: inline-block;}
 		.form .btn_send {font-weight: bold;}
 		.form:not(.detail) .btn_insert,
 		.form:not(.detail) .btn_edit {display: none;}
 		.form.detail .btn_send {display: none;}
 		.btn_excel {position: absolute; top: 10px; right: 10px;}
+		.img_box {display: inline-block; background: #f0f0f0; vertical-align: top;}
+		.id_box {display: inline-block; width: 30px; vertical-align: top; border: 2px solid #333; text-align: center;}
 	</style>
 </head>
 <body>
+<div class="id_box">
+	<span id="id">ID</span>
+</div>
 <div class="form">
-	<p>
-		<strong>id</strong>
-		<span id="id"></span>
-	</p>
 	<p>
 		<strong>name</strong>
 		<input type="text" id="name" placeholder="name">
@@ -34,10 +36,17 @@
 		<strong>email</strong>
 		<input type="text" id="email" placeholder="email">
 	</p>
+	<form class="photoForm" enctype="multipart/form-data">
+	<p>
+		<strong>file</strong>
+		<input type="file" id="file" placeholder="file">
+	</p>
+	</form>
 	<button type="button" class="btn_insert">insert</button>
 	<button type="button" class="btn_send">send</button>
 	<button type="button" class="btn_edit">edit</button>
 </div>
+<div class="img_box"></div>
 <form id="delByForm">
 	<input type="hidden" name="delId">
 </form>
@@ -124,6 +133,25 @@ $(".btn_edit").on("click", function(e) {
 		  reloadList();
 	  }
 	});
+
+	var data = new FormData($('#photoForm')[0]);
+	$.ajax({             
+    	type: "POST",          
+        enctype: 'multipart/form-data',  
+        url: "/file/upload",        
+        data: data,          
+        processData: false,    
+        contentType: false,      
+        cache: false,           
+        timeout: 600000,       
+        success: function (data) { 
+        	alert("complete");    
+        },          
+        error: function (e) {  
+        	console.log("ERROR : ", e);
+            alert("fail");      
+         }     
+	});
 });
 
 
@@ -149,6 +177,9 @@ function itemDelEvent() {
 	});
 }
 itemDelEvent();
+
+
+
 
 </script>
 </body>

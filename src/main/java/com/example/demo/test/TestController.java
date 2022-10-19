@@ -38,7 +38,7 @@ public class TestController {
 		this.testService = testService;
 	}
 	
-	@GetMapping("")
+	@GetMapping({"", "home"})
 	public ModelAndView testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
 		view.addObject("userList", testService.getUserList());
