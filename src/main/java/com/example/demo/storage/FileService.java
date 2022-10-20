@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
-public interface StorageService {
+public interface FileService {
     
     void init();
 
@@ -16,7 +16,7 @@ public interface StorageService {
 
     Path load(String filename);
 
-    Resource loadAsResource(String filename);
+	Resource loadAsResource(String filename);
 
     void deleteAll();
     

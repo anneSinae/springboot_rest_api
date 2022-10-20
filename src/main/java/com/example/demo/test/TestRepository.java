@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.User;
+import com.example.demo.model.FileData;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -71,4 +72,13 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource("id", id);
 		return jdpcTmpl.update(sql, param);
 	}
+	
+//	public FileData getPhoto(int id){
+//		String sql = "select * from users where name=:name";
+//		FileData photo = new FileData();
+//		photo.setId(rs.getInt("id"));
+//		photo.setName(rs.getString("name"));
+//		return jdpcTmpl.query(sql, param, FileData);
+//	}
+	
 }

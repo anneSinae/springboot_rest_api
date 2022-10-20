@@ -1,4 +1,4 @@
-package com.example.demo.test;
+package com.example.demo.storage;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +19,8 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 
-import com.example.demo.storage.StorageService;
 import com.example.demo.model.FileData;
+import com.example.demo.test.TestService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,10 +30,10 @@ import lombok.extern.slf4j.Slf4j;
 public class FileController {
 
 	private TestService testService;
-	private StorageService storageService;
+	private FileService storageService;
 
 	@Autowired
-	public FileController(TestService testService, StorageService storageService) {
+	public FileController(TestService testService, FileService storageService) {
 		this.testService = testService;
 		this.storageService = storageService;
 	}
@@ -63,6 +63,7 @@ public class FileController {
 	public ResponseEntity<Resource> serveFile(@RequestParam(value = "filename") String filename) {
 
 		Resource file = storageService.loadAsResource(filename);
+		System.out.println(file + ": file /////////////");
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);

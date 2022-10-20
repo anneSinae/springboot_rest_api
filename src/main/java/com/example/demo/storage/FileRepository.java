@@ -17,7 +17,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class FileSystemStorageService implements StorageService {
+public class FileRepository implements FileService {
 
     @Value("${spring.servlet.multipart.location}")
     private String uploadPath;
@@ -38,9 +38,7 @@ public class FileSystemStorageService implements StorageService {
                 throw new Exception("ERROR : File is empty.");
             }
             Path root = Paths.get(uploadPath);
-            if (!Files.exists(root)) {
-                init();
-            }
+            if (!Files.exists(root)) init();
 
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, root.resolve(file.getOriginalFilename()),

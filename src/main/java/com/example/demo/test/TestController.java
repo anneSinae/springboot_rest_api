@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.User;
+import com.example.demo.model.FileData;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -87,4 +88,10 @@ public class TestController {
         httpHeaders.setLocation(new URI("http://localhost:8080/users"));
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
 	}
+	
+//	@GetMapping("photo/{id}")
+//	public FileData getPhoto(@PathVariable("id") int id) {
+//		FileData file = testService.getPhoto(id);
+//		return file;
+//	}
 }

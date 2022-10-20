@@ -13,7 +13,7 @@ function validateImg(inputId, option){
 	var fileSize;
 	var typeGuide;
 	
-	console.log(targetList.length);
+	console.log(targetList.length, "선택파일 개수");
 	if(required && !targetList.length) {
 		alert("첨부파일은 필수입니다.");
 	    $("#" + inputId).focus();
