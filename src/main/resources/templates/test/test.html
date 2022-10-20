@@ -118,6 +118,16 @@ function itemViewEvent() {
 			  $("#email").val(data[0].email);
 		  }
 		});
+		$.ajax({
+		  type: 'GET',
+		  url: '/users/photo/' + parseInt($(this).siblings(".id").text()),
+		  success: function(data) {
+			  console.log(data);
+			  for(var i = 0; i < data.length; i++) {
+			  	$(".img_box").append("<img src='/resource/" + data[i].url + ">");
+			  }
+		  }
+		});
 	});
 }
 itemViewEvent();

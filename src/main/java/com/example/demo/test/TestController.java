@@ -89,9 +89,10 @@ public class TestController {
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
 	}
 	
-//	@GetMapping("photo/{id}")
-//	public FileData getPhoto(@PathVariable("id") int id) {
-//		FileData file = testService.getPhoto(id);
-//		return file;
-//	}
+	@GetMapping("photo/{id}")
+	public List<FileData> getUserPhoto(@PathVariable("id") int id) {
+		System.out.println(id + " ////////////");
+		List<FileData> fileList = testService.getUserPhoto(id);
+		return fileList;
+	}
 }

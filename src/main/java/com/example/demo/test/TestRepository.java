@@ -73,12 +73,17 @@ public class TestRepository {
 		return jdpcTmpl.update(sql, param);
 	}
 	
-//	public FileData getPhoto(int id){
-//		String sql = "select * from users where name=:name";
-//		FileData photo = new FileData();
-//		photo.setId(rs.getInt("id"));
-//		photo.setName(rs.getString("name"));
-//		return jdpcTmpl.query(sql, param, FileData);
-//	}
+	public List<FileData> getUserPhoto(int id){
+		String sql = "select * from files where id in (select id from users where user_id = :id)";
+		MapSqlParameterSource param = new MapSqlParameterSource("id", id);
+		RowMapper<FileData> fileMapper = (rs, rowNum) -> {
+			FileData file = new FileData();
+			file.setFilename(rs.getString("filename"));
+			file.setUrl(rs.getString("url"));
+			file.setUserId(rs.getInt("user_id"));
+			return file;
+		};
+		return jdpcTmpl.query(sql, param, fileMapper);
+	}
 	
 }
