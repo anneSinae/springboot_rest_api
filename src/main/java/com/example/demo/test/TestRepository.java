@@ -78,8 +78,7 @@ public class TestRepository {
 		MapSqlParameterSource param = new MapSqlParameterSource("id", id);
 		RowMapper<FileData> fileMapper = (rs, rowNum) -> {
 			FileData file = new FileData();
-			file.setFilename(rs.getString("filename"));
-			file.setUrl(rs.getString("url"));
+			file.setFilename(rs.getString("path"));
 			file.setUserId(rs.getInt("user_id"));
 			return file;
 		};

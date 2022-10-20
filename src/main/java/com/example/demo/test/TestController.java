@@ -91,7 +91,6 @@ public class TestController {
 	
 	@GetMapping("photo/{id}")
 	public List<FileData> getUserPhoto(@PathVariable("id") int id) {
-		System.out.println(id + " ////////////");
 		List<FileData> fileList = testService.getUserPhoto(id);
 		return fileList;
 	}

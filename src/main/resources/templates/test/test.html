@@ -21,7 +21,9 @@
 		.form.detail .btn_send {display: none;}
 		.btn_excel {position: absolute; top: 10px; right: 10px;}
 		.img_box {display: inline-block; background: #f0f0f0; vertical-align: top;}
+		.img_box img {width: 100px; height: auto;}
 		.id_box {display: inline-block; width: 30px; vertical-align: top; border: 2px solid #333; text-align: center;}
+		
 	</style>
 </head>
 <body>
@@ -122,9 +124,8 @@ function itemViewEvent() {
 		  type: 'GET',
 		  url: '/users/photo/' + parseInt($(this).siblings(".id").text()),
 		  success: function(data) {
-			  console.log(data);
 			  for(var i = 0; i < data.length; i++) {
-			  	$(".img_box").append("<img src='/resource/" + data[i].url + ">");
+			  	$(".img_box").empty().append("<img src='/resource/" + data[i].filename + "'>");
 			  }
 		  }
 		});
