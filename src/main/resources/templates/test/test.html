@@ -36,21 +36,25 @@
 		<strong>email</strong>
 		<input type="text" id="email" placeholder="email">
 	</p>
+	
 	<form class="photoForm" enctype="multipart/form-data">
-	<p>
 		<strong>file</strong>
-		<input type="file" id="file" placeholder="file">
-	</p>
+		<input type="file" name="file" placeholder="file" id="imgfile" multiple>
 	</form>
+	
 	<button type="button" class="btn_insert">insert</button>
 	<button type="button" class="btn_send">send</button>
 	<button type="button" class="btn_edit">edit</button>
 </div>
+
 <div class="img_box"></div>
+
 <form id="delByForm">
 	<input type="hidden" name="delId">
 </form>
+
 <hr>
+
 <ul th:fragment="users_wrap" class="users_wrap">
 	<li th:each="item : ${userList}">
 	    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
@@ -133,24 +137,20 @@ $(".btn_edit").on("click", function(e) {
 		  reloadList();
 	  }
 	});
-
-	var data = new FormData($('#photoForm')[0]);
+	if(!validateImg("imgfile", {fileType: "img"})) return
+		
 	$.ajax({             
     	type: "POST",          
         enctype: 'multipart/form-data',  
-        url: "/file/upload",        
-        data: data,          
+        url: "/file/upload-multi",        
+        data: new FormData($('.photoForm')[0]),          
         processData: false,    
         contentType: false,      
         cache: false,           
         timeout: 600000,       
         success: function (data) { 
         	alert("complete");    
-        },          
-        error: function (e) {  
-        	console.log("ERROR : ", e);
-            alert("fail");      
-         }     
+        }    
 	});
 });
 
