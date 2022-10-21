@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko">
-    <head>
-    	<th:block layout:fragment="import" th:include="@{/include/import}"></th:block>
-    	<title>board</title>
-    </head>
-    <body>
-        <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
-        <div layout:fragment="content" class="content">
-            <table>
-                <th:block th:each="item : ${userList}">
-                    <tr>
-                        <td th:text="${item.name}"></td><td th:text="${item.email}"></td>
-                    </tr>
-                </th:block>
-            </table>
-        </div>
-        <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>
-    </body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{include/layout}">
+	<head>
+	    <title>Board</title>
+	</head>
+
+	main - 이 영역은 구조상 layout파일의 내용들로 대체됨
+
+	<div layout:fragment="con-main">
+		main content    
+		
+		<div th:replace="board/part :: #part_id"></div>
+		<div th:replace="board/part :: .part_class"></div>
+		<div th:replace="board/part :: part_fragment"></div>
+	    <footer th:insert="include/footer :: footerFragment2('sinae', 10)"></footer>
+	    
+	</div>
+
 </html>

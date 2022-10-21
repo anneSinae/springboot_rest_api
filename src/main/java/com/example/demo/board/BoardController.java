@@ -12,20 +12,19 @@ import com.example.demo.model.User;
 import com.example.demo.test.TestService;
 
 @RestController
-@RequestMapping("board")
 public class BoardController {
 	
-	private String basePath = "/board/";
+	private String basePath = "board/";
 	private TestService testService;
 	
 	public BoardController(TestService testService) {
 		this.testService = testService;
 	}
 	
-	@GetMapping("")
+	@GetMapping("/board")
 	public ModelAndView Hello() {
 		ModelAndView view = new ModelAndView(this.basePath + "main");
-		
+
 		List<User> userList = testService.getUserList();
 		view.addObject("userList", userList);
 		return view;

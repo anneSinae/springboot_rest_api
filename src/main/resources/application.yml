@@ -30,7 +30,7 @@ spring:
     livereload:
       enabled: true
   
-  # View Templete Engine
+  # thymeleaf : View Templete Engine
   thymeleaf:
     prefix: classpath:templates/
     suffix: .html
