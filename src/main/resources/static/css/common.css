@@ -1,7 +1,53 @@
 @charset "utf-8";
 
-* {padding: 0; margin: 0; box-sizing: border-box; color: #a0a1a5; font-size: 13px;}
-body {background: #38383e;}
-header {height: 5vh; border-bottom: 1px solid #26262e;}
-footer {height: 5vh; border-top: 1px solid rgba(150, 150, 150, 0.2);}
-.content {height: 90vh; border-top: 1px solid #484848;}
+/****** default ******/
+* {padding: 0; margin: 0; box-sizing: border-box; color: #a0a1a5; font-size: 13px; list-style: none;}
+body {background: #383838;} /* #38383e */
+input {background: rgba(150, 150, 150, 0.2); border: 0; border-radius: 3px; color: #fff;}
+input:focus {border: 0; outline: 0;}
+button {background: #333; border: 0; border-radius: 3px;}
+
+/****** layout ******/
+header {display: flex; align-items: center; height: 5vh; padding: 0 30px; border-bottom: 1px solid #26262e;}
+header .logo {
+	padding-left: 45px;
+	background: url(../img/kepco.png) no-repeat left top/34px auto; 
+	font-size: 1.3rem;
+	color: #eee;
+	font-weight: bold;
+	line-height: 1.3;
+}
+
+.content {display: flex; height: 95vh; border-top: 1px solid #484848;}
+.conL {width: 200px; padding: 10px;}
+.conR {flex: 1;}
+
+.conL h3 {color: #fff; font-size: 1.2rem;}
+
+/****** contents ******/
+/* main */
+
+.srch-wrap {}
+.srch-wrap input {width: 80%; height: 30px; padding: 10px;}
+.srch-wrap button {}
+.structure .img {
+	width: 70%;
+	height: 600px;
+	margin: 60px auto;
+	background: url(../img/sample.png) no-repeat center top/100% auto;
+	filter: invert(78%);
+}
+
+.pannel {
+	position: relative;
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid rgba(100, 100, 100, 0.3); 
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+}
+.pannel h4 {font-size: 0.9rem; color: #e0e0e0;}
+.pannel .guide {position: absolute; top: 12px; right: 10px; font-size: 0.6rem;}
+.pannel ul {margin-top: 10px; border: 1px solid rgba(100, 100, 100, 0.3); border-left: 0; border-right: 0;}
+.pannel ul li {display: flex; justify-content: space-between; padding: 7px 0; line-height: 1;}
+.pannel ul li + li {border-top: 1px solid rgba(100, 100, 100, 0.3); }

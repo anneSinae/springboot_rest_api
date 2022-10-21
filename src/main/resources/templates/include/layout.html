@@ -8,11 +8,6 @@
 	
 	<header th:replace="include/header :: headerFragment"></header>
 	
-	layout
-	
-	<div id="content" layout:fragment="con-layout">layout content1</div>
-	<div layout:fragment="con-main">layout content2</div>
-	
-	<footer th:replace="include/footer :: footerFragment"></footer>
+	<div layout:fragment="content">layout content2</div>
 
 </html>

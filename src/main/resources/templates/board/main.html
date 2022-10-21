@@ -5,17 +5,51 @@
 	<head>
 	    <title>Board</title>
 	</head>
-
-	main - 이 영역은 구조상 layout파일의 내용들로 대체됨
-
-	<div layout:fragment="con-main">
-		main content    
+	<div layout:fragment="content" class="content">
 		
-		<div th:replace="board/part :: #part_id"></div>
-		<div th:replace="board/part :: .part_class"></div>
-		<div th:replace="board/part :: part_fragment"></div>
-	    <footer th:insert="include/footer :: footerFragment2('sinae', 10)"></footer>
-	    
+		<div class="conL">
+			<div class="cable-detail">
+				<h3>CB-21상세정보</h3>
+				<div class="srch-wrap">
+					<input type="text" placeholder="날짜/기간선택">
+					<button type="button">검색</button>
+				</div>
+				
+				<div class="pannel">
+				<h4>시간별 온도</h4>
+				<div class="guide">단위:℃</div>
+				<ul>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+				</ul>
+				</div>
+				
+				<div class="pannel">
+				<h4>시간별 온도그래프</h4>
+				<div class="guide">기간평균/선택</div>
+				<ul>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+					<li><span>12:10</span><b>12</b></li>
+				</ul>
+				</div>
+			</div>
+		</div>
+		<!-- conL -->
+		
+		<div class="conR">
+			<div class="structure">
+				<div class="img"></div>
+			</div>
+		</div>
+		<!-- conR -->
 	</div>
-
 </html>
