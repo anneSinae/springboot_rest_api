@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
-      layout:decorate="~{include/layout}">
-    
-    <th:block layout:fragment="head">
-    	<title>test board</title>
-        <link th:href="@{/css/common.css}" rel="stylesheet" />
-    </th:block>
+<html lang="ko">
+    <head>
+    	<th:block layout:fragment="import" th:include="@{/include/import}"></th:block>
+    	<title>board</title>
+    </head>
     <body>
         <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
         <div layout:fragment="content" class="content">
@@ -19,6 +15,6 @@
                 </th:block>
             </table>
         </div>
-        <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>	
+        <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>
     </body>
 </html>
