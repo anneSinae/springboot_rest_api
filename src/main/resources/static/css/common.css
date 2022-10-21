@@ -2,7 +2,7 @@
 
 /****** default ******/
 * {padding: 0; margin: 0; box-sizing: border-box; color: #a0a1a5; font-size: 13px; list-style: none;}
-body {background: #383838;} /* #38383e */
+body {background: #38383e;}
 input {background: rgba(150, 150, 150, 0.2); border: 0; border-radius: 3px; color: #fff;}
 input:focus {border: 0; outline: 0;}
 button {background: #333; border: 0; border-radius: 3px;}
@@ -32,17 +32,17 @@ header .logo {
 .srch-wrap button {}
 .structure .img {
 	width: 70%;
+	max-width: 900px;
 	height: 600px;
 	margin: 60px auto;
 	background: url(../img/sample.png) no-repeat center top/100% auto;
-	filter: invert(78%);
 }
 
 .pannel {
 	position: relative;
 	margin: 10px 0;
-	padding: 10px;
-	border: 1px solid rgba(100, 100, 100, 0.3); 
+	padding: 15px;
+	border: 1px solid rgba(100, 100, 100, 0.3);
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 	border-radius: 6px;
 }
