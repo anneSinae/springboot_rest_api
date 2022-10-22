@@ -2,7 +2,7 @@
 
 /****** default ******/
 * {padding: 0; margin: 0; box-sizing: border-box; color: #a0a1a5; font-size: 13px; list-style: none;}
-body {background: #38383e;}
+body {background: #26282c;}
 input {background: rgba(150, 150, 150, 0.2); border: 0; border-radius: 3px; color: #fff;}
 input:focus {border: 0; outline: 0;}
 button {background: #333; border: 0; border-radius: 3px;}
@@ -42,9 +42,9 @@ header .logo {
 	position: relative;
 	margin: 10px 0;
 	padding: 15px;
-	border: 1px solid rgba(100, 100, 100, 0.3);
-	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: 2px 2px 7px 1px rgba(0, 0, 0, 0.2);
 	border-radius: 6px;
+	background: #2e3034;
 }
 .pannel h4 {font-size: 0.9rem; color: #e0e0e0;}
 .pannel .guide {position: absolute; top: 12px; right: 10px; font-size: 0.6rem;}
