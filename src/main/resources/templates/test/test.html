@@ -118,6 +118,7 @@ function itemViewEvent() {
 			  $("#id").text(data[0].id);
 			  $("#name").val(data[0].name);
 			  $("#email").val(data[0].email);
+			  $(".img_box").empty();
 		  }
 		});
 		$.ajax({
@@ -125,7 +126,7 @@ function itemViewEvent() {
 		  url: '/users/photo/' + parseInt($(this).siblings(".id").text()),
 		  success: function(data) {
 			  for(var i = 0; i < data.length; i++) {
-			  	$(".img_box").empty().append("<img src='/resource/" + data[i].filename + "'>");
+			  	$(".img_box").append("<img src='/resource/" + data[i].filename + "'>");
 			  }
 		  }
 		});

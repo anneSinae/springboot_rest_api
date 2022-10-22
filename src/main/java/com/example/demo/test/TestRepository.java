@@ -24,30 +24,24 @@ public class TestRepository {
 	public TestRepository(NamedParameterJdbcTemplate jdpcTmpl) {
 		this.jdpcTmpl = jdpcTmpl;
 	}
+	
+	RowMapper<User> usersMapper = (rs, rowNum) -> {
+		User user = new User();
+		user.setId(rs.getInt("id"));
+		user.setName(rs.getString("name"));
+		user.setEmail(rs.getString("email"));
+		return user;
+	};
 
 	public List<User> findList(){
 		String sql = "select * from users";
-		RowMapper<User> usersMapper = (rs, rowNum) -> {
-			User user = new User();
-			user.setId(rs.getInt("id"));
-			user.setName(rs.getString("name"));
-			user.setEmail(rs.getString("email"));
-			return user;
-		};
-		return jdpcTmpl.query(sql, new MapSqlParameterSource(), usersMapper);
+		return jdpcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper);
 	}
 	
 	public List<User> getUserListByName(String name){
 		String sql = "select * from users where name=:name";
 		MapSqlParameterSource param = new MapSqlParameterSource("name", name);
-		RowMapper<User> usersMapper = (rs, rowNum) -> {
-			User user = new User();
-			user.setId(rs.getInt("id"));
-			user.setName(rs.getString("name"));
-			user.setEmail(rs.getString("email"));
-			return user;
-		};
-		return jdpcTmpl.query(sql, param, usersMapper);
+		return jdpcTmpl.query(sql, param, this.usersMapper);
 	}
 	
 	public User insert(User user) {

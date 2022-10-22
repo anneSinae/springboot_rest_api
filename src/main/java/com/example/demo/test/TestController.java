@@ -46,13 +46,13 @@ public class TestController {
 		return view;
 	}
 	
-	@GetMapping("detail/{name}") //http://localhost:8080/info/users/원펀맨
+	@GetMapping("detail/{name}") //http://localhost:8080/users/defatil/원펀맨
 	public List<User> testInfoByPathVariable(@PathVariable("name") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;
 	}
 
-	@GetMapping("detail") //http://localhost:8080/info/users?name=원펀맨
+	@GetMapping("detail") //http://localhost:8080/users/defatil?name=원펀맨
 	public List<User> testInfoRequestParam(@RequestParam(value = "name", required = false, defaultValue = "홍길동") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;
@@ -80,7 +80,7 @@ public class TestController {
 		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
 	}
 	
-	@PostMapping(value="manage/user2")
+	@PostMapping(value="manage/user2") // by form태그 submit, redirect
 	public ResponseEntity<Object> testDelete2(@RequestParam Map<String, Object> param) throws URISyntaxException {
 		Integer id = Integer.valueOf(param.get("delId").toString());
 		testService.delete(id);
