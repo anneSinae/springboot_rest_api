@@ -52,7 +52,7 @@ public class FileController {
 	
 	@PostMapping(value = "upload")
 	public ResponseEntity<String> upload(MultipartFile file) throws IllegalStateException, IOException {
-		// storageService.store(file);
+		// FileService.store(file);
 		if (!file.isEmpty()) {
 			file.transferTo(new File(file.getOriginalFilename()));
 		}

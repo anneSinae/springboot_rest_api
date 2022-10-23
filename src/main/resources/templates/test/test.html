@@ -74,6 +74,9 @@ $(".btn_insert").on("click", function() {
 	$(".form input").val("");
 });
 $(".btn_send").on("click", function() {
+	var formData = new FormData();
+	var multiFiles = $('#imgfile')[0].files;
+	
 	var paramUser = {
 		"name": document.getElementById('name').value,
 		"email":  document.getElementById('email').value,
@@ -82,17 +85,27 @@ $(".btn_send").on("click", function() {
 		alert("no data");
 		return;
 	}
+	
+	formData.append("user", new Blob([JSON.stringify(paramUser)], {type: "application/json"}));
+	for(var i = 0; i < multiFiles.length; i++) {
+		formData.append("file", $('#imgfile')[0].files[i]);
+	}
+	
 	$.ajax({
-	  type: 'PUT',
+	  type: 'POST',
 	  url: '/users/user',
-	  data: JSON.stringify(paramUser),
-	  dataType: "json",
-	  contentType: "application/json; charset=UTF-8",
+	  data: formData,
+	  enctype: 'multipart/form-data',
+	  processData: false,    
+	  contentType: false,      
+	  cache: false,
+	  dataType: "json",   
 	  success: function(data) {
 		  reloadList();
 		  $(".form input").val("");
 	  }
 	});	
+	
 });
 
 function reloadList() {
@@ -118,13 +131,14 @@ function itemViewEvent() {
 			  $("#id").text(data[0].id);
 			  $("#name").val(data[0].name);
 			  $("#email").val(data[0].email);
-			  $(".img_box").empty();
 		  }
 		});
 		$.ajax({
 		  type: 'GET',
 		  url: '/users/photo/' + parseInt($(this).siblings(".id").text()),
 		  success: function(data) {
+			  $(".img_box").empty();
+			  if(!data.length) return;
 			  for(var i = 0; i < data.length; i++) {
 			  	$(".img_box").append("<img src='/resource/" + data[i].filename + "'>");
 			  }

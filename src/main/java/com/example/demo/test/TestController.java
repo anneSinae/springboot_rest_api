@@ -1,13 +1,18 @@
 package com.example.demo.test;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +24,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.User;
@@ -65,9 +72,23 @@ public class TestController {
 	    return view;
 	}
 	
-	@PutMapping(value="user") //생성요청마다 ok하려면 Post, 동일데이터 생성요청시 최초요청만 ok하려면 Put
-	public ResponseEntity<User> testAdd(@RequestBody User user) {
-		return new ResponseEntity<>(testService.insert(user), HttpStatus.OK);
+	//생성요청마다 ok하려면 Post, 동일데이터 생성요청시 최초요청만 ok하려면 Put
+	@PostMapping(value="user", consumes={MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+	public ResponseEntity<User> testAdd(
+			@RequestPart("user") User user, 
+			@RequestPart("file") List<MultipartFile> file) throws IOException {
+		testService.insert(user);
+		User newUser = testService.tempGetLastUser();
+		
+		if (file != null) {
+	      for (MultipartFile fl : file) {
+	        if (fl.getSize() > 0) {
+	        	testService.insertPhoto(newUser.getId(), fl.getOriginalFilename());
+	        	fl.transferTo(new File(fl.getOriginalFilename()));
+	        }
+	      }
+	    }
+		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}/*ResponseEntity<> : Http상태, 응답헤더, 응답데이터 등을 포함 */
 	
 	@PutMapping(value="manage/{id}")
@@ -92,6 +113,9 @@ public class TestController {
 	@GetMapping("photo/{id}")
 	public List<FileData> getUserPhoto(@PathVariable("id") int id) {
 		List<FileData> fileList = testService.getUserPhoto(id);
+		for (Object fl : fileList) {
+			System.out.println(fl + " + fileList");
+		}
 		return fileList;
 	}
 }

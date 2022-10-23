@@ -42,4 +42,11 @@ public class TestService {
 		return testRepository.getUserPhoto(id);
 	}
 	
+	public void insertPhoto(int user_id, String path) {
+		testRepository.insertPhoto(user_id, path);
+	}
+	
+	public User tempGetLastUser() {
+		return this.testRepository.tempGetLastUser();
+	}
 }
