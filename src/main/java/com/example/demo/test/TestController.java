@@ -30,11 +30,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.User;
+import com.example.demo.model.Equip;
 import com.example.demo.model.FileData;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @RequestMapping("users")
 public class TestController {
@@ -50,6 +50,7 @@ public class TestController {
 	public ModelAndView testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
 		view.addObject("userList", testService.getUserList());
+		view.addObject("equipList", testService.getEquipList());
 		return view;
 	}
 	

@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	runtimeOnly 'mysql:mysql-connector-java'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	implementation 'com.microsoft.sqlserver:mssql-jdbc'
 	
 	// lombok
 	implementation 'org.projectlombok:lombok'

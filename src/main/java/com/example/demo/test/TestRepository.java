@@ -2,7 +2,7 @@ package com.example.demo.test;
 
 import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -10,17 +10,22 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.model.User;
+import com.example.demo.model.Equip;
 import com.example.demo.model.FileData;
 
 
 @Repository
 public class TestRepository {
-	private final NamedParameterJdbcTemplate jdpcTmpl;
-	private final JdbcTemplate jdpc;
 	
-	public TestRepository(NamedParameterJdbcTemplate jdpcTmpl, JdbcTemplate jdpc) {
+	private final NamedParameterJdbcTemplate jdpcTmpl;
+	private final NamedParameterJdbcTemplate jdpcTmpl2;
+	
+	public TestRepository(
+			@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdpcTmpl,
+			@Qualifier("namedJdbcTmpl2") NamedParameterJdbcTemplate jdpcTmpl2
+		) {
 		this.jdpcTmpl = jdpcTmpl;
-		this.jdpc = jdpc;
+		this.jdpcTmpl2 = jdpcTmpl2;
 	}
 	
 	RowMapper<User> usersMapper = (rs, rowNum) -> {
@@ -90,5 +95,16 @@ public class TestRepository {
 	public User tempGetLastUser() {
 		String sql = "select * from users ORDER BY id DESC LIMIT 1";
 		return jdpcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper).get(0);
+	}
+	
+	public List<Equip> getEquipList(){
+		String sql = "select eq_id, eq_nm from dbo.bEquip";
+		RowMapper<Equip> listMapper = (rs, rowNum) -> {
+			Equip equip = new Equip();
+			equip.setEq_id(rs.getInt("eq_id"));
+			equip.setEq_nm(rs.getString("eq_nm"));
+			return equip;
+		};
+		return jdpcTmpl2.query(sql, new MapSqlParameterSource(), listMapper); //send to jdpcTmpl2
 	}
 }
