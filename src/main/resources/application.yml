@@ -4,7 +4,7 @@ spring:
     url: jdbc:mariadb://localhost:3306/sample?serverTimeZone=UTC&CharacterEncoding=UTF-8
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password: gotkdvndfur1!
+    password: sinae0417
     hikari:
       maximum-pool-size: 10
       connection-timeout: 5000
@@ -15,10 +15,10 @@ spring:
       max-lifetime: 1800000
   # db2
   datasource2:
-    url: jdbc:sqlserver://localhost:1433;databaseName=DATS_Test;encrypt=true;trustServerCertificate=true
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    username: dms
-    password: gotkdvndfur1!
+    url: jdbc:mariadb://localhost:3306/sample?serverTimeZone=UTC&CharacterEncoding=UTF-8
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: sinae0417
     hikari:
       maximum-pool-size: 10
       connection-timeout: 5000
@@ -26,26 +26,25 @@ spring:
       validation-timeout: 2000
       minimum-idle: 10
       idle-timeout: 600000
-      max-lifetime: 1800000    
-  
+      max-lifetime: 1800000
   
   # resource mapping url
   mvc: 
     static-path-pattern: "/**"
-  
+
   # file
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-      location: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\upload
+      location: C:\\Users\\annes\\Frontend\\Spring\\worksample\\sample\\src\\main\\resources\\upload
   
   # reload static resourses changes directly
   devtools:
     livereload:
       enabled: true
   
-  # thymeleaf : View Templete Engine
+  # View Templete Engine
   thymeleaf:
     prefix: classpath:templates/
     suffix: .html
@@ -57,6 +56,6 @@ spring:
 # slf4j
 logging:
     file:
-      name: C:\\Users\\User\\worksample\\sample\\src\\main\\resources\\log\\logback.log
+      name: C:\\Users\\annes\\Frontend\\Spring\\worksample\\sample\\src\\main\\resources\\log\\logback.log
       max-size: 500MB
       max-history: 10

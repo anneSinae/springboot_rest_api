@@ -19,6 +19,7 @@ bin/
 *.log
 *.bak
 *.gz
+!**/src/main/resources/log/
 
 ### IntelliJ IDEA ###
 .idea
