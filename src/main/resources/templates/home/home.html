@@ -4,15 +4,14 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
       layout:decorate="~{include/layout}">
     
-    <th:block layout:fragment="head">
-    	<title>Anne layout test</title>
-        <link th:href="@{/css/common.css}" rel="stylesheet" />
-    </th:block>
-    <body>
-        <th:block layout:fragment="header" th:include="@{/include/header}"></th:block>
-        <div layout:fragment="content" class="content">
+<head>
+    <title>home</title>
+</head>
+    <div layout:fragment="container" class="home">
+		<header th:replace="include/header :: headerFragment('알람')"></header>
+		
+		<div class="content">
             Home
-        </div>
-        <th:block layout:fragment="footer" th:include="@{/include/footer}"></th:block>	
-    </body>
+		</div><!-- //content -->
+	</div><!-- //container -->
 </html>

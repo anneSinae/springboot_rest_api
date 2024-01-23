@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" 
+      xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">해저케이블 온도·진동 Monitoring System</title>
+    
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/png">
+    <link href="/css/jquery-ui-1.13.0.css" rel="stylesheet">
+	<script src="/js/jquery-2.2.4.min.js"></script>
+	<script src="/js/jquery-ui-1.13.0.min.js"></script>
+</head>
 
-	<head th:replace="include/head :: headFragment">
-	    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Anne</title>
-	</head>
-	
-	<header th:replace="include/header :: headerFragment"></header>
-	
-	<div layout:fragment="content">layout content2</div>
-
+<body>
+<div id="wrap">
+	<nav th:replace="include/nav :: navFragment"></nav>
+	<div layout:fragment="container" id="container"></div><!-- //container -->
+	<nav th:replace="include/footer :: footerFragment"></nav>
+</div>
+</body>
 </html>

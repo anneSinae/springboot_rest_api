@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.Equip;
 import com.example.demo.model.FileData;
 import com.example.demo.model.User;
 
@@ -49,9 +48,5 @@ public class TestService {
 	
 	public User tempGetLastUser() {
 		return this.testRepository.tempGetLastUser();
-	}
-	
-	public List<Equip> getEquipList(){
-		return this.testRepository.getEquipList();
 	}
 }

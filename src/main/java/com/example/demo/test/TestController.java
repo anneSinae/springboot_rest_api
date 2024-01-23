@@ -30,13 +30,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.model.User;
-import com.example.demo.model.Equip;
 import com.example.demo.model.FileData;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("test")
 public class TestController {
 	
 	private TestService testService;
@@ -50,17 +49,16 @@ public class TestController {
 	public ModelAndView testInfo() {
 		ModelAndView view = new ModelAndView("test/test");
 		view.addObject("userList", testService.getUserList());
-		view.addObject("equipList", testService.getEquipList());
 		return view;
 	}
 	
-	@GetMapping("detail/{name}") //http://localhost:8080/users/defatil/원펀맨
+	@GetMapping("detail/{name}") //http://localhost:8080/test/detail/원펀맨
 	public List<User> testInfoByPathVariable(@PathVariable("name") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;
 	}
 
-	@GetMapping("detail") //http://localhost:8080/users/defatil?name=원펀맨
+	@GetMapping("detail") //http://localhost:8080/test/detail?name=원펀맨
 	public List<User> testInfoRequestParam(@RequestParam(value = "name", required = false, defaultValue = "홍길동") String name) {
 		List<User> userList = testService.getUserListByName(name);
 		return userList;

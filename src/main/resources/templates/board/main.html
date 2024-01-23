@@ -1,55 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
       layout:decorate="~{include/layout}">
-	<head>
-	    <title>Board</title>
-	</head>
-	<div layout:fragment="content" class="content">
+    
+<head>
+    <title>board</title>
+</head>
+    <div layout:fragment="container" class="board">
+		<header th:replace="include/header :: headerFragment('board')"></header>
 		
-		<div class="conL">
-			<div class="cable-detail">
-				<h3>CB-21상세정보</h3>
-				<div class="srch-wrap">
-					<input type="text" placeholder="날짜/기간선택">
-					<button type="button">검색</button>
-				</div>
-				
-				<div class="pannel">
-				<h4>시간별 온도</h4>
-				<div class="guide">단위:℃</div>
-				<ul>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-				</ul>
-				</div>
-				
-				<div class="pannel">
-				<h4>시간별 온도그래프</h4>
-				<div class="guide">기간평균/선택</div>
-				<ul>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-					<li><span>12:10</span><b>12</b></li>
-				</ul>
-				</div>
-			</div>
-		</div>
-		<!-- conL -->
+		<div class="content">
+			board
+		</div><!-- //content -->
 		
-		<div class="conR">
-			<div class="structure">
-				<div class="img"></div>
-			</div>
-		</div>
-		<!-- conR -->
-	</div>
+		<ul class="users_wrap">
+			<li th:each="item : ${boardList}">
+			    <span class="title" th:text="${item.title}"></span><span class="content" th:text="${item.content}"></span>
+			    <button type="button">X</button>
+			</li>
+		</ul>
+	</div><!-- //container -->
 </html>

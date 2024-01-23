@@ -51,3 +51,33 @@ header .logo {
 .pannel ul {margin-top: 10px; border: 1px solid rgba(100, 100, 100, 0.3); border-left: 0; border-right: 0;}
 .pannel ul li {display: flex; justify-content: space-between; padding: 7px 0; line-height: 1;}
 .pannel ul li + li {border-top: 1px solid rgba(100, 100, 100, 0.3); }
+
+
+
+/*************************************  login *************************************/
+.wrap_login {position: absolute; width: 100%; height: 100%; padding-top: 120px; background: url(../img/bg_login.png) no-repeat; text-align: center;}
+.wrap_login .login {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
+.wrap_login .lg_tit {font-size: 4.2rem; color: #fff; font-weight: 600;}
+.wrap_login .lg_titEn {margin-top: 5px; font-size: 1.14rem; color: #7B818F;}
+.wrap_login .lg_form {width: 480px; padding: 50px 60px 60px; margin: 100px auto 0; border-radius: 10px; background: #131519;}
+.wrap_login .lg_form h3 {margin-bottom: 40px; font-size: 2rem; font-weight: 600;}
+.wrap_login .lg_form .item {display: flex; flex-direction: column; margin-top: 20px;}
+.wrap_login .lg_form label {order: 1; text-align: left; color: #D2DCF5;}
+.wrap_login .lg_form input {height: 52px; order: 2; margin-top: 8px; padding: 0 20px; background: transparent; font-size: 1.14rem; transition: 0.5s;}
+.wrap_login .lg_form .btn_set {margin-top: 40px;}
+.wrap_login .lg_form .btn_set .btn {width: 100%; height: 52px; font-size: 1.14rem;}
+.wrap_login .lg_form .btn_set .btn_signUp {width: 80%;}
+.wrap_login .lg_form .btn_set .btn_cancel {width: 17%;}
+.wrap_login.signUp .lg_form {margin-top: 60px;}
+.wrap_login.signUp .lg_form .btn_set {display: flex; justify-content: space-between;}
+.wrap_login .btn_signup {position: relative; top: 15px; padding: 0 1px 2px; border-bottom: 1px solid #7b8093; color: #7b8093;}
+
+
+/*************************************  error *************************************/
+.wrap_error {position: absolute; width: 100%; height: 100%; background: url(../img/bg_error.png) no-repeat;}
+.wrap_error .error {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
+.wrap_error .error .er_tit {padding-top: 220px; background: url(../img/img_error.svg) no-repeat center top; font-weight: 600; font-size: 2.8rem;}
+.wrap_error .error .er_con {margin-top: 40px; color: #AEB7CF; font-size: 1.28rem; line-height: 1.6;}
+.wrap_error .error .btn_set {margin-top: 40px;}
+.wrap_error .error .btn_set .btn {height: 68px; padding: 0 55px; border-radius: 16px; font-size: 1.28rem; font-weight: 600;}
+.wrap_error .error .btn_set .btn + .btn {margin-left: 17px;}

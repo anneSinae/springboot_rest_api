@@ -1,4 +1,8 @@
-<header th:fragment="headerFragment">
-	<a class="logo">해상풍력 CABLE MONITORING</a>
-	
-</header>
+		<header th:fragment="headerFragment(title)">
+			<h2 class="title" th:text="${title}"></h2>
+			<div class="info_common">
+				<th:block th:replace="include/info :: .date_day_time"></th:block>
+				<button class="btn btn_refresh" onclick="goPageHistory(0);">새로고침</button>
+				<th:block th:replace="include/info :: .login_info"></th:block>
+			</div>
+		</header>

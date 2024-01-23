@@ -9,23 +9,21 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.User;
-import com.example.demo.model.Equip;
 import com.example.demo.model.FileData;
-
+import com.example.demo.model.User;
 
 @Repository
 public class TestRepository {
 	
-	private final NamedParameterJdbcTemplate jdpcTmpl;
-	private final NamedParameterJdbcTemplate jdpcTmpl2;
+	private final NamedParameterJdbcTemplate jdbcTmpl;
+	private final NamedParameterJdbcTemplate jdbcTmpl2;
 	
 	public TestRepository(
-			@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdpcTmpl,
-			@Qualifier("namedJdbcTmpl2") NamedParameterJdbcTemplate jdpcTmpl2
+			@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdbcTmpl,
+			@Qualifier("namedJdbcTmpl2") NamedParameterJdbcTemplate jdbcTmpl2
 		) {
-		this.jdpcTmpl = jdpcTmpl;
-		this.jdpcTmpl2 = jdpcTmpl2;
+		this.jdbcTmpl = jdbcTmpl;
+		this.jdbcTmpl2 = jdbcTmpl2;
 	}
 	
 	RowMapper<User> usersMapper = (rs, rowNum) -> {
@@ -38,13 +36,13 @@ public class TestRepository {
 
 	public List<User> findList(){
 		String sql = "select * from users";
-		return jdpcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper);
+		return jdbcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper);
 	}
 	
 	public List<User> getUserListByName(String name){
 		String sql = "select * from users where name=:name";
 		MapSqlParameterSource param = new MapSqlParameterSource("name", name);
-		return jdpcTmpl.query(sql, param, this.usersMapper);
+		return jdbcTmpl.query(sql, param, this.usersMapper);
 	}
 	
 	public User insert(User user) {
@@ -52,7 +50,7 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail()); 
-		jdpcTmpl.update(sql, param);
+		jdbcTmpl.update(sql, param);
 		System.out.println(user.getId() + " rep insert///");
 		return user;
 	}
@@ -62,13 +60,13 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource("id", user.getId())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail());
-		return jdpcTmpl.update(sql, param);
+		return jdbcTmpl.update(sql, param);
 	}
 	
 	public int delete(int id) {
 		String sql = "DELETE from users WHERE id = :id";
 		SqlParameterSource param = new MapSqlParameterSource("id", id);
-		return jdpcTmpl.update(sql, param);
+		return jdbcTmpl.update(sql, param);
 	}
 	
 	public List<FileData> getUserPhoto(int id){
@@ -80,7 +78,7 @@ public class TestRepository {
 			file.setUserId(rs.getInt("user_id"));
 			return file;
 		};
-		return jdpcTmpl.query(sql, param, fileMapper);
+		return jdbcTmpl.query(sql, param, fileMapper);
 	}
 	
 	public void insertPhoto(int user_id, String path) {
@@ -89,22 +87,11 @@ public class TestRepository {
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("user_id", user_id)
 				.addValue("path", path); 
-		jdpcTmpl.update(sql, param);
+		jdbcTmpl.update(sql, param);
 	}
 	
 	public User tempGetLastUser() {
 		String sql = "select * from users ORDER BY id DESC LIMIT 1";
-		return jdpcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper).get(0);
-	}
-	
-	public List<Equip> getEquipList(){
-		String sql = "select eq_id, eq_nm from dbo.bEquip";
-		RowMapper<Equip> listMapper = (rs, rowNum) -> {
-			Equip equip = new Equip();
-			equip.setEq_id(rs.getInt("eq_id"));
-			equip.setEq_nm(rs.getString("eq_nm"));
-			return equip;
-		};
-		return jdpcTmpl2.query(sql, new MapSqlParameterSource(), listMapper); //send to jdpcTmpl2
+		return jdbcTmpl.query(sql, new MapSqlParameterSource(), this.usersMapper).get(0);
 	}
 }

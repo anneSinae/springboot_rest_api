@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Board;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,24 +16,24 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 public class BoardRepository {
 	
-	private final NamedParameterJdbcTemplate jdpcTmpl;
+	private final NamedParameterJdbcTemplate jdbcTmpl;
 	
-	public BoardRepository(@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdpcTmpl) {
-		this.jdpcTmpl = jdpcTmpl;
+	public BoardRepository(@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdbcTmpl) {
+		this.jdbcTmpl = jdbcTmpl;
 	}
 
-	public List<User> findList(){
+	public List<Board> findList(){
 		String sql = "select * from board";
 		
 		log.debug("query : {}", sql);
 		
-		RowMapper<User> usersMapper = (rs, rowNum) -> {
-			User user = new User();
-			user.setName(rs.getString("name"));
-			user.setEmail(rs.getString("email"));
-			return user;
+		RowMapper<Board> boardMapper = (rs, rowNum) -> {
+			Board board = new Board();
+			board.setTitle(rs.getString("title"));
+			board.setContent(rs.getString("content"));
+			return board;
 		};
 		
-		return jdpcTmpl.query(sql, new MapSqlParameterSource(), usersMapper);
+		return jdbcTmpl.query(sql, new MapSqlParameterSource(), boardMapper);
 	}
 }

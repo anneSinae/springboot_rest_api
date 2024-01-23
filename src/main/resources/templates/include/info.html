@@ -1,0 +1,18 @@
+<th:block class="system_nm">해저케이블 온도·진동 모니터링시스템</th:block>
+
+<th:block class="system_nmEn">SUBMARINE CABLE TEMPERATURE AND VIBRATION MONITORINGSYSTEM</th:block>
+
+<th:block class="date_day_time">
+				<p class="date">0000.00.00</p>
+				<p class="day">Mon</p>
+				<p class="time">12:00 AM</p>
+</th:block>
+
+<th:block class="login_info">
+				<div class="userInfo_nm">
+					<b th:text="${userName}"></b>님
+				</div>
+                <form id="logoutForm" action="/logout" method="post">
+                    <a class="btn colorGyLine btn_logout" onclick="return logout()">로그아웃</a>
+                </form>
+</th:block>

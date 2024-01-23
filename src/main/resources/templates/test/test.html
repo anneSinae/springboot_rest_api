@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
+      layout:decorate="~{include/layout}">
+    
 <head>
 	<meta charset="UTF-8">
 	<title>test</title>
@@ -26,58 +30,61 @@
 		
 	</style>
 </head>
-<body>
-<div class="id_box">
-	<span id="id">ID</span>
-</div>
-<div class="form">
-	<p>
-		<strong>name</strong>
-		<input type="text" id="name" placeholder="name">
-	</p>
-	<p>
-		<strong>email</strong>
-		<input type="text" id="email" placeholder="email">
-	</p>
-	
-	<form class="photoForm" enctype="multipart/form-data">
-		<strong>file</strong>
-		<input type="file" name="file" placeholder="file" id="imgfile" multiple>
-	</form>
-	
-	<button type="button" class="btn_insert">insert</button>
-	<button type="button" class="btn_send">send</button>
-	<button type="button" class="btn_edit">edit</button>
-</div>
+    <div layout:fragment="container" class="test">
+		<header th:replace="include/header :: headerFragment('board')"></header>
+		
+		<div class="content">
+			<div class="id_box">
+				<span id="id">ID</span>
+			</div>
+			<div class="form">
+				<p>
+					<strong>name</strong>
+					<input type="text" id="name" placeholder="name">
+				</p>
+				<p>
+					<strong>email</strong>
+					<input type="text" id="email" placeholder="email">
+				</p>
+				
+				<form class="photoForm" enctype="multipart/form-data">
+					<strong>file</strong>
+					<input type="file" name="file" placeholder="file" id="imgfile" multiple>
+				</form>
+				
+				<button type="button" class="btn_insert">insert</button>
+				<button type="button" class="btn_send">send</button>
+				<button type="button" class="btn_edit">edit</button>
+			</div>
 
-<div class="img_box"></div>
+			<div class="img_box"></div>
 
-<form id="delByForm">
-	<input type="hidden" name="delId">
-</form>
-
-<hr>
-
-<ul th:fragment="users_wrap" class="users_wrap">
-	<li th:each="item : ${userList}">
-	    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
-	    <button type="button">X</button>
-	</li>
-</ul>
-<div class="logo"><img src="img/kepco.png" style="width: 100px; height: auto"></div>
-<img src="resource/aaa.jpg" style="width: 100px; height: auto">
-<!--<button type="button" class="btn_excel" onclick="downloadExcel()">excel</button>-->
-
-
-<div class="equipList">
-	<table>
-        <th:block th:each="item : ${equipList}">
-            <tr>
-                <td th:text="${item.eq_id}"></td><td th:text="${item.eq_nm}"></td>
-            </tr>
-        </th:block>
-    </table>
-</div>
+			<form id="delByForm">
+				<input type="hidden" name="delId">
+			</form>
+			
+			<hr>
+			
+			<ul th:fragment="users_wrap" class="users_wrap">
+				<li th:each="item : ${userList}">
+				    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
+				    <button type="button">X</button>
+				</li>
+			</ul>
+			<div class="logo"><img src="img/kepco.png" style="width: 100px; height: auto"></div>
+			<img src="resource/aaa.jpg" style="width: 100px; height: auto">
+			<!--<button type="button" class="btn_excel" onclick="downloadExcel()">excel</button>-->
+			
+			
+			<div class="equipList">
+				<table>
+			        <th:block th:each="item : ${equipList}">
+			            <tr>
+			                <td th:text="${item.eq_id}"></td><td th:text="${item.eq_nm}"></td>
+			            </tr>
+			        </th:block>
+			    </table>
+			</div>
 		
 		
 <script>
@@ -221,8 +228,8 @@ function itemDelEvent() {
 itemDelEvent();
 
 
-
-
 </script>
-</body>
+
+		</div><!-- //content -->
+	</div><!-- //container -->
 </html>

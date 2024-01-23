@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Board;
 
 @Service
 public class BoardService {
@@ -17,7 +17,7 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 
-	public List<User> getUserList() {
+	public List<Board> findList() {
 		return this.boardRepository.findList();
 	}
 }

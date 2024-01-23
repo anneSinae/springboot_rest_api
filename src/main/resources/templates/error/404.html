@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<meta charset="UTF-8" />
-	    <title>Board</title>
-	    <link th:href="@{/css/common.css}" rel="stylesheet">
-	</head>
-	
-	<body>
-	    <h1>404 에러페이지</h1>
-	    <div>code : <span th:text="${code}"></span></div>
-	    <div>timestamp : <span th:text="${timestamp}"></span></div>
-	</body>
+<head>
+	<meta charset="UTF-8" />
+    <title>error</title>
+    <link href="/css/reset.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+    <link href="/css/contents.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrap_error">
+		<div class="error">
+		    <h1 class="er_tit">요청하신 페이지를 찾을 수 없습니다.</h1>
+		    <div class="er_con">페이지가 존재하지 않습니다.(code : <span th:text="${code}"></span> / timestamp : <span th:text="${timestamp}"></span>)<br>입력하신 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.</div>
+		    
+		    <div class="btn_set">
+				<a href="javascript:history.go(-1)" class="btn colorGy btn_cancel">이전 화면</a>
+				<a href="/home" class="btn colorBl btn_ok">홈으로 가기</a>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

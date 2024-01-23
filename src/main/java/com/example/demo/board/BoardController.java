@@ -8,25 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.demo.model.User;
-import com.example.demo.test.TestService;
+import com.example.demo.model.Board;
 
 @RestController
 public class BoardController {
 	
 	private String basePath = "board/";
-	private TestService testService;
+	private BoardService boardController;
 	
-	public BoardController(TestService testService) {
-		this.testService = testService;
+	public BoardController(BoardService boardController) {
+		this.boardController = boardController;
 	}
 	
 	@GetMapping("/board")
 	public ModelAndView Hello() {
 		ModelAndView view = new ModelAndView(this.basePath + "main");
 
-		List<User> userList = testService.getUserList();
-		view.addObject("userList", userList);
+		List<Board> boardList = boardController.findList();
+		view.addObject("boardList", boardList);
 		return view;
 	}
 	
