@@ -1,4 +1,4 @@
-package com.example.demo.login;
+package com.example.demo.user;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class LoginRepository {
+public class UserRepository {
 	private final NamedParameterJdbcTemplate jdbcTmpl;
 	
-	public LoginRepository(
+	public UserRepository(
 			@Qualifier("namedJdbcTmpl1") NamedParameterJdbcTemplate jdbcTmpl
 		) {
 		this.jdbcTmpl = jdbcTmpl;

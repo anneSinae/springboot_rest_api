@@ -1,4 +1,4 @@
-package com.example.demo.login;
+package com.example.demo.user;
 
 import java.util.List;
 
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.User;
 
 @Service
-public class LoginService {
+public class UserService {
 
-	private final LoginRepository loginRepository;
+	private final UserRepository loginRepository;
 
 	@Autowired
-	public LoginService(LoginRepository loginRepository) {
+	public UserService(UserRepository loginRepository) {
 		this.loginRepository = loginRepository;
 	}
 

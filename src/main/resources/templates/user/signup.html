@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
+      layout:decorate="~{include/layout_user}">
+    
+<head>
+    <title>login</title>
+</head>
+    	<div layout:fragment="container_user" class="login">
+		    <h1 class="lg_tit"><th:block th:replace="include/info :: .system_nm"></th:block></h1>
+		    <h2 class="lg_titEn"><th:block th:replace="include/info :: .system_nmEn"></th:block></h2>
+		    
+		    <div class="lg_form">
+		    	<h3>회원가입</h3>
+		    	<form id="signUpInfo" action="/signUp_proc" method="post">
+		    	<div class="item">
+		    		<input type="text" id="regNm" name="userNm"><label for="regNm">사용자명</label>
+		    	</div>
+		    	<div class="item">
+		    		<input type="text" id="regId" name="userId"><label for="regId">아이디</label>
+		    	</div>
+		    	<div class="item">
+		    		<input type="password" id="regPw" name="userPw"><label for="regPw">비밀번호</label>
+		    	</div>
+			    <div class="btn_set">
+					<a href="/" class="btn colorGy btn_cancel">취소</a>
+					<a class="btn colorBl btn_signUp" onclick="signUpChk()">회원가입</a>
+				</div>
+				</form>
+		    </div>
+		</div><!-- //container_user -->
+	
+</body>
+</html>

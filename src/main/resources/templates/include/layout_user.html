@@ -5,17 +5,13 @@
 <head>
 	<th:block th:replace="include/import :: importMeta"></th:block>
     <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">해저케이블 온도·진동 Monitoring System</title>
-    <link href="/css/jquery-ui-1.13.0.css" rel="stylesheet">
     <th:block th:replace="include/import :: importCss"></th:block>
     <th:block th:replace="include/import :: importScript"></th:block>
-	<script src="/js/jquery-ui-1.13.0.min.js"></script>
 </head>
 
 <body>
-<div id="wrap">
-	<nav th:replace="include/nav :: navFragment"></nav>
-	<div layout:fragment="container" id="container"></div><!-- //container -->
-	<nav th:replace="include/footer :: footerFragment"></nav>
-</div>
+<div class="wrap_user">
+	<div layout:fragment="container_user" id="container_user"></div><!-- //container_user -->
+</div><!-- //wrap_user -->
 </body>
 </html>

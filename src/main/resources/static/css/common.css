@@ -18,11 +18,7 @@ header .logo {
 	line-height: 1.3;
 }
 
-.content {display: flex; height: 95vh; border-top: 1px solid #484848;}
-.conL {width: 200px; padding: 10px;}
-.conR {flex: 1;}
-
-.conL h3 {color: #fff; font-size: 1.2rem;}
+.content {height: 95vh; border-top: 1px solid #484848;}
 
 /****** contents ******/
 /* main */
@@ -53,24 +49,43 @@ header .logo {
 .pannel ul li + li {border-top: 1px solid rgba(100, 100, 100, 0.3); }
 
 
+/* btn common */
+.btn_set {clear: both;}
+.btn_set > button ~ button,
+.btn_set > button ~ form {margin-left: 3px;}
+.btn {display: inline-flex; justify-content: center; align-items: center; height: 40px; padding: 0 20px; border-radius: 6px; font-size: 1rem; vertical-align: middle; transition: 0.2s ease;}
+.btn:hover {box-shadow: inset 0em 0.7em 0px rgba(255, 255, 255, 0.1);}
+.btn.colorBl {background: #455DDC; color: #fff!important;}
+.btn.colorRd {background: #DC4545; color: #fff!important;}
+.btn.colorGy {background: #32364E; color: #fff!important;}
+.btn.colorBlLine {background: #182154; border: 2px solid #455DDC; color: #fff;}
+.btn.colorGyLine {background: transparent; border: 2px solid #32364E; color: #c1c3cb;}
+.btn.colorRdLine {background: #401010; border: 2px solid #C81818; color: #fff;}
+.btn.colorGrLine {background: #084625; border: 2px solid #16CF6D; color: #fff;}
+.btn_set form {display: inline-flex; vertical-align: middle;}
+table .btn {height: 32px; padding: 0 10px;}
+table .btn.stat {width: 60px;}
+table .btn:not(.stat) {width: 70px;}
+
+
+
 
 /*************************************  login *************************************/
-.wrap_login {position: absolute; width: 100%; height: 100%; padding-top: 120px; background: url(../img/bg_login.png) no-repeat; text-align: center;}
-.wrap_login .login {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
-.wrap_login .lg_tit {font-size: 4.2rem; color: #fff; font-weight: 600;}
-.wrap_login .lg_titEn {margin-top: 5px; font-size: 1.14rem; color: #7B818F;}
-.wrap_login .lg_form {width: 480px; padding: 50px 60px 60px; margin: 100px auto 0; border-radius: 10px; background: #131519;}
-.wrap_login .lg_form h3 {margin-bottom: 40px; font-size: 2rem; font-weight: 600;}
-.wrap_login .lg_form .item {display: flex; flex-direction: column; margin-top: 20px;}
-.wrap_login .lg_form label {order: 1; text-align: left; color: #D2DCF5;}
-.wrap_login .lg_form input {height: 52px; order: 2; margin-top: 8px; padding: 0 20px; background: transparent; font-size: 1.14rem; transition: 0.5s;}
-.wrap_login .lg_form .btn_set {margin-top: 40px;}
-.wrap_login .lg_form .btn_set .btn {width: 100%; height: 52px; font-size: 1.14rem;}
-.wrap_login .lg_form .btn_set .btn_signUp {width: 80%;}
-.wrap_login .lg_form .btn_set .btn_cancel {width: 17%;}
-.wrap_login.signUp .lg_form {margin-top: 60px;}
-.wrap_login.signUp .lg_form .btn_set {display: flex; justify-content: space-between;}
-.wrap_login .btn_signup {position: relative; top: 15px; padding: 0 1px 2px; border-bottom: 1px solid #7b8093; color: #7b8093;}
+#container_user {position: absolute; width: 100%; height: 100%; padding-top: 120px; background: url(../img/bg_login.png) no-repeat; text-align: center;}
+#container_user .login {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
+#container_user .lg_tit {font-size: 4.2rem; color: #fff; font-weight: 600;}
+#container_user .lg_titEn {margin-top: 5px; font-size: 1.14rem; color: #7B818F;}
+#container_user .lg_form {width: 480px; padding: 50px 60px 60px; margin: 100px auto 0; border-radius: 10px; background: #131519;}
+#container_user .lg_form h3 {margin-bottom: 40px; font-size: 2rem; font-weight: 600;}
+#container_user .lg_form .item {display: flex; flex-direction: column; margin-top: 20px; text-align:left;}
+#container_user .lg_form input {height: 52px; order: 2; margin-top: 8px; padding: 0 20px; background: transparent; font-size: 1.14rem; transition: 0.5s;}
+#container_user .lg_form .btn_set {margin-top: 40px;}
+#container_user .lg_form .btn_set .btn {width: 100%; height: 52px; font-size: 1.14rem;}
+#container_user .lg_form .btn_set .btn_signUp {width: 80%;}
+#container_user .lg_form .btn_set .btn_cancel {width: 17%;}
+#container_user.signUp .lg_form {margin-top: 60px;}
+#container_user.signUp .lg_form .btn_set {display: flex; justify-content: space-between;}
+#container_user .btn_signup {position: relative; top: 15px; padding: 0 1px 2px; border-bottom: 1px solid #7b8093; color: #7b8093;}
 
 
 /*************************************  error *************************************/

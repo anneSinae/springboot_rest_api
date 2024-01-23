@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard';
+    src: url('fonts/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* browser initialize : 브라우저 초기화 */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, i, b, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, hr, input, select, textarea, button {margin: 0; padding: 0; border: none; list-style: none; font-family: "Pretendard", "tahoma", "malgun gothic", "san-serif"; font-weight: 400; font-style: normal; background: transparent;}
+a {color: #fff; cursor: pointer; text-decoration: none;}
+table {border-collapse:collapse; border-spacing:0;}
+strong {font-weight: 500;}
+html {font-size: 14px;}
+body {background: #05080f; color: #ddd; word-break: keep-all; overflow-y: hidden;}
+* {box-sizing: border-box; -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+
+/* form */
+input[type=text], input[type=password], input[type=number], input[type=file], select, textarea {height: 40px; padding: 0 10px; border-radius: 6px; border: 2px solid #32364E; background-color: transparent; color: #fff; font-size: 1rem; vertical-align: middle; font-weight: 400;}
+input[type=text][readonly='readonly']:not(.datepicker):not(.timepicker),
+input[type=text]:not(.datepicker):not(.timepicker):read-only,
+input[type=text]:disabled {color: #8b94c3;}
+input::placeholder {color: #7885A8;}
+input:focus {outline: 0;}
+button {cursor: pointer;}
+textarea {width: 100%; height: 150px; background: #32364E; resize: none;}
+textarea[readonly='readonly'] {color: #555;}
+select {padding-right: 23px; -webkit-appearance: none; -moz-appearance: none; appearance: none; background: url(../img/ico_selectbox.png) no-repeat right center; color: #8b94c3;}
+select::-ms-expand {display: none;}
+option {background: #222631; color: #8b94c3;}
+select:focus {outline: 0;}
+input.date {background-color: #32364E; border: 0;}

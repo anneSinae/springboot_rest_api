@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/include"
+      layout:decorate="~{include/layout_user}">
+    
 <head>
-	<meta charset="UTF-8" />
-    <title>해저케이블 온도·진동 Monitoring System</title>
-    <link href="/css/reset.css" rel="stylesheet">
-    <link href="/css/common.css" rel="stylesheet">
-    <link href="/css/contents.css" rel="stylesheet">
-    <script src="/js/login.js"></script>
+    <title>login</title>
 </head>
-<body>
-	<div class="wrap_login">
-		<div class="login">
+    	<div layout:fragment="container_user" class="login">
 		    <h1 class="lg_tit"><th:block th:replace="include/info :: .system_nm"></th:block></h1>
 		    <h2 class="lg_titEn"><th:block th:replace="include/info :: .system_nmEn"></th:block></h2>
 		    
@@ -25,19 +22,20 @@
                     </div>
                     <div class="btn_set">
                         <a class="btn colorBl btn_login">로그인</a>
-                    	<a href="/sign_up" class="btn_signup">회원가입</a>
+                    	<a href="/sign_up" class="btn colorBl btn_signup">회원가입</a>
                     </div>
 				</form>
 		    </div>
-		</div>
+		    
+		    
 		
-		<ul th:fragment="users_wrap" class="users_wrap">
-			<li th:each="item : ${userList}">
-			    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
-			    <button type="button">X</button>
-			</li>
-		</ul>
-	</div>
+			<ul th:fragment="users_wrap" class="users_wrap">
+				<li th:each="item : ${userList}">
+				    <span class="id" th:text="${item.id}"></span><span class="name" th:text="${item.name}"></span><span class="email" th:text="${item.email}"></span>
+				    <button type="button">X</button>
+				</li>
+			</ul>
+		</div><!-- //container_user -->
 	
 </body>
 </html>
