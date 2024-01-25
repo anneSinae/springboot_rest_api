@@ -12,7 +12,8 @@ import lombok.ToString;
 public class FileData {
 	private String filename;
     private String url;
-    private int userId;
+    private int file_no;
+    private int user_no;
     private Long size;
     //private Integer insertId;
 	//private Date insertDt;

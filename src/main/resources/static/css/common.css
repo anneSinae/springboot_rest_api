@@ -22,7 +22,7 @@ header .info_common > * {display: inline-block;}
 #gnb {display: flex; padding:10px;}
 #gnb li {display: inline-flex; justify-content: center; padding: 10px; border:1px solid #333; background:#2f2f2fad;}
 
-.content {height: 95vh; border-top: 1px solid #484848;}
+.content {position: relative; height: 95vh; border-top: 1px solid #484848;}
 
 /****** contents ******/
 /* main */

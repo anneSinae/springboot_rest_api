@@ -34,16 +34,16 @@ public class TestService {
 		return testRepository.update(user);
 	}
 	
-	public int delete(int id) {
-		return testRepository.delete(id);
+	public int delete(int user_no) {
+		return testRepository.delete(user_no);
 	}
 	
 	public List<FileData> getUserPhoto(int id) {
 		return testRepository.getUserPhoto(id);
 	}
 	
-	public void insertPhoto(int user_id, String path) {
-		testRepository.insertPhoto(user_id, path);
+	public void insertPhoto(int user_no, String path) {
+		testRepository.insertPhoto(user_no, path);
 	}
 	
 	public User tempGetLastUser() {

@@ -84,7 +84,8 @@ public class TestController {
 		if (file != null) {
 	      for (MultipartFile fl : file) {
 	        if (fl.getSize() > 0) {
-	        	testService.insertPhoto(newUser.getId(), fl.getOriginalFilename());
+	        	System.out.println(newUser.getUser_no() + "newUser.getUser_no()----");
+	        	testService.insertPhoto(newUser.getUser_no(), fl.getOriginalFilename());
 	        	fl.transferTo(new File(fl.getOriginalFilename()));
 	        }
 	      }
@@ -92,28 +93,28 @@ public class TestController {
 		return new ResponseEntity<>(newUser, HttpStatus.OK);
 	}/*ResponseEntity<> : Http상태, 응답헤더, 응답데이터 등을 포함 */
 	
-	@PutMapping(value="manage/{id}")
+	@PutMapping(value="manage/{user_no}")
 	public ResponseEntity<Integer> testUpdate(@RequestBody User user) {
 		return new ResponseEntity<>(testService.update(user), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value="manage/user")
-	public ResponseEntity<Integer> testDelete(@RequestParam(value = "id") int id) {
-		return new ResponseEntity<>(testService.delete(id), HttpStatus.OK);
+	public ResponseEntity<Integer> testDelete(@RequestParam(value = "user_no") int user_no) {
+		return new ResponseEntity<>(testService.delete(user_no), HttpStatus.OK);
 	}
 	
 	@PostMapping(value="manage/user2") // by form태그 submit, redirect
 	public ResponseEntity<Object> testDelete2(@RequestParam Map<String, Object> param) throws URISyntaxException {
-		Integer id = Integer.valueOf(param.get("delId").toString());
-		testService.delete(id);
+		Integer user_no = Integer.valueOf(param.get("delUserNo").toString());
+		testService.delete(user_no);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setLocation(new URI("http://localhost:8080/users"));
         return new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
 	}
 	
-	@GetMapping("photo/{id}")
-	public List<FileData> getUserPhoto(@PathVariable("id") int id) {
-		List<FileData> fileList = testService.getUserPhoto(id);
+	@GetMapping("photo/{user_no}")
+	public List<FileData> getUserPhoto(@PathVariable("user_no") int user_no) {
+		List<FileData> fileList = testService.getUserPhoto(user_no);
 		for (Object fl : fileList) {
 			System.out.println(fl + " + fileList");
 		}

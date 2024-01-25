@@ -28,7 +28,8 @@ public class TestRepository {
 	
 	RowMapper<User> usersMapper = (rs, rowNum) -> {
 		User user = new User();
-		user.setId(rs.getInt("id"));
+		user.setUser_no(rs.getInt("user_no"));
+		user.setId(rs.getString("id"));
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		return user;
@@ -46,47 +47,48 @@ public class TestRepository {
 	}
 	
 	public User insert(User user) {
-		String sql = "INSERT INTO users (name, email, password) values (:name, :email, :password)";
+		String sql = "INSERT INTO users (id, name, email, password) values (:id, :name, :email, :password)";
 		SqlParameterSource param = new MapSqlParameterSource()
+				.addValue("id", user.getId())
 				.addValue("name", user.getName())
 				.addValue("password", user.getPassword())
 				.addValue("email", user.getEmail()); 
 		jdbcTmpl.update(sql, param);
-		System.out.println(user.getId() + " rep insert///");
 		return user;
 	}
 	
 	public int update(User user) {
-		String sql = "UPDATE users SET name = :name, email = :email WHERE id = :id"; //where조건은 사용자 변경없는 컬럼 사용 
-		SqlParameterSource param = new MapSqlParameterSource("id", user.getId())
+		String sql = "UPDATE users SET id = :id, name = :name, email = :email WHERE user_no = :user_no"; //where조건은 사용자 변경없는 컬럼 사용 
+		SqlParameterSource param = new MapSqlParameterSource("user_no", user.getUser_no())
+				.addValue("id", user.getId())
 				.addValue("name", user.getName())
 				.addValue("email", user.getEmail());
 		return jdbcTmpl.update(sql, param);
 	}
 	
-	public int delete(int id) {
-		String sql = "DELETE from users WHERE id = :id";
-		SqlParameterSource param = new MapSqlParameterSource("id", id);
+	public int delete(int user_no) {
+		String sql = "DELETE from users WHERE user_no = :user_no";
+		SqlParameterSource param = new MapSqlParameterSource("user_no", user_no);
 		return jdbcTmpl.update(sql, param);
 	}
 	
-	public List<FileData> getUserPhoto(int id){
-		String sql = "select * from files where user_id = :id";
-		MapSqlParameterSource param = new MapSqlParameterSource("id", id);
+	public List<FileData> getUserPhoto(int user_no){
+		String sql = "select * from files where user_no = :user_no";
+		MapSqlParameterSource param = new MapSqlParameterSource("user_no", user_no);
 		RowMapper<FileData> fileMapper = (rs, rowNum) -> {
 			FileData file = new FileData();
 			file.setFilename(rs.getString("path"));
-			file.setUserId(rs.getInt("user_id"));
+			file.setUser_no(rs.getInt("user_no"));
 			return file;
 		};
 		return jdbcTmpl.query(sql, param, fileMapper);
 	}
 	
-	public void insertPhoto(int user_id, String path) {
-		System.out.println(user_id + " rep////" + path);
-		String sql = "INSERT INTO files (user_id, path) values (:user_id, :path)";
+	public void insertPhoto(int user_no, String path) {
+		System.out.println(user_no + " rep////" + path);
+		String sql = "INSERT INTO files (user_no, path) values (:user_no, :path)";
 		SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("user_id", user_id)
+				.addValue("user_no", user_no)
 				.addValue("path", path); 
 		jdbcTmpl.update(sql, param);
 	}

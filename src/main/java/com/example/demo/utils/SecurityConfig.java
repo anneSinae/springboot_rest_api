@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 public class SecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    	System.out.println("HttpSecurity");
-    	
     	return http.csrf().disable() // why csrf disable : spring boot use not Session cookie but Local starage 
         .authorizeRequests() // begin authorize on requests
         .antMatchers("/board/**").authenticated() // add url to authorize

@@ -25,7 +25,8 @@ public class UserRepository {
 
 	RowMapper<User> usersMapper = (rs, rowNum) -> {
 		User user = new User();
-		user.setId(rs.getInt("id"));
+		user.setUser_no(rs.getInt("user_no"));
+		user.setId(rs.getString("id"));
 		user.setName(rs.getString("name"));
 		user.setEmail(rs.getString("email"));
 		return user;
