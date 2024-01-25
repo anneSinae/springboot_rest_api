@@ -76,6 +76,8 @@ public class TestController {
 	public ResponseEntity<User> testAdd(
 			@RequestPart("user") User user, 
 			@RequestPart("file") List<MultipartFile> file) throws IOException {
+		
+		if (user.getPassword() == null) user.setPassword("0000");
 		testService.insert(user);
 		User newUser = testService.tempGetLastUser();
 		

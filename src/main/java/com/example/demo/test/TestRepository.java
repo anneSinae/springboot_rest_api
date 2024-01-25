@@ -46,9 +46,10 @@ public class TestRepository {
 	}
 	
 	public User insert(User user) {
-		String sql = "INSERT INTO users (name, email) values (:name, :email)";
+		String sql = "INSERT INTO users (name, email, password) values (:name, :email, :password)";
 		SqlParameterSource param = new MapSqlParameterSource()
 				.addValue("name", user.getName())
+				.addValue("password", user.getPassword())
 				.addValue("email", user.getEmail()); 
 		jdbcTmpl.update(sql, param);
 		System.out.println(user.getId() + " rep insert///");

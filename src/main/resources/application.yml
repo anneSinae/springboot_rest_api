@@ -59,3 +59,7 @@ logging:
       name: C:\\Users\\annes\\Frontend\\Spring\\worksample\\sample\\src\\main\\resources\\log\\logback.log
       max-size: 500MB
       max-history: 10
+
+# server     
+server:
+    port: 8090

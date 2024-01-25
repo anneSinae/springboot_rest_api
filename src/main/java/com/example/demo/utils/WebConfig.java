@@ -20,7 +20,8 @@ public class WebConfig implements WebMvcConfigurer {
 	// file upload
 	@Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resource/**").addResourceLocations("classpath:/upload/");
+		//"classpath:/upload/" classpath : builed resources directory by gradle, so need to build again
+		registry.addResourceHandler("/resource/**").addResourceLocations("file:src/main/resources/upload/");
     }
 	
 	

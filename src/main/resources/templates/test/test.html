@@ -96,6 +96,7 @@ $(".btn_insert").on("click", function() {
 $(".btn_send").on("click", function() {
 	var formData = new FormData();
 	var multiFiles = $('#imgfile')[0].files;
+	console.log(multiFiles, "")
 	
 	var paramUser = {
 		"name": document.getElementById('name').value,
@@ -113,7 +114,7 @@ $(".btn_send").on("click", function() {
 	
 	$.ajax({
 	  type: 'POST',
-	  url: '/users/user',
+	  url: '/test/user',
 	  data: formData,
 	  enctype: 'multipart/form-data',
 	  processData: false,    
@@ -131,7 +132,7 @@ $(".btn_send").on("click", function() {
 function reloadList() {
 	$.ajax({
 	  type: 'GET',
-	  url: '/users/list',
+	  url: '/test/list',
 	  success: function(data) {
 		  $(".users_wrap").replaceWith(data);
 		  itemViewEvent();
@@ -146,7 +147,7 @@ function itemViewEvent() {
 		$(".form").addClass("detail");
 		$.ajax({
 		  type: 'GET',
-		  url: '/users/detail?name=' + $(this).text(),
+		  url: '/test/detail?name=' + $(this).text(),
 		  success: function(data) {
 			  $("#id").text(data[0].id);
 			  $("#name").val(data[0].name);
@@ -155,7 +156,7 @@ function itemViewEvent() {
 		});
 		$.ajax({
 		  type: 'GET',
-		  url: '/users/photo/' + parseInt($(this).siblings(".id").text()),
+		  url: '/test/photo/' + parseInt($(this).siblings(".id").text()),
 		  success: function(data) {
 			  $(".img_box").empty();
 			  if(!data.length) return;
@@ -178,7 +179,7 @@ $(".btn_edit").on("click", function(e) {
 	};
 	$.ajax({
 	  type: 'PUT',
-	  url: '/users/manage/' + paramUser.id,
+	  url: '/test/manage/' + paramUser.id,
 	  data: JSON.stringify(paramUser),
 	  dataType: "json",
 	  contentType: "application/json; charset=UTF-8",
@@ -211,7 +212,7 @@ function itemDelEvent() {
 		/* ajax방식 */
 		$.ajax({
 		  type: 'DELETE',
-		  url: '/users/manage/user?id=' + parseInt($(this).siblings(".id").text()),
+		  url: '/test/manage/user?id=' + parseInt($(this).siblings(".id").text()),
 		  success: function(data) {
 			  thisBtn.parent().remove();
 		  }

@@ -20,6 +20,9 @@
                     <div class="item">
                         <input type="password" id="userPw" name="password"><label for="userPw">비밀번호</label>
                     </div>
+		            <div class="note" th:if="${param.error}">
+		                사용자ID 또는 비밀번호를 확인해 주세요.
+		            </div>
                     <div class="btn_set">
                         <a class="btn colorBl btn_login">로그인</a>
                     	<a href="/sign_up" class="btn colorBl btn_signup">회원가입</a>

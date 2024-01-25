@@ -9,7 +9,7 @@ public class HomeController {
 	
 	private String basePath = "/home/";
 	
-	@RequestMapping("home")
+	@RequestMapping("/")
 	public ModelAndView Home() {
 		return new ModelAndView(this.basePath + "home");
 	}
