@@ -34,7 +34,7 @@ import com.example.demo.model.FileData;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@RestController // 기본 return값이 object임. view페이지 반환하려면 ModelandView필요(controller는 return string값을 view파일로 매핑시킴. object/data만 반환하려면 @ResponseBody필요)
 @RequestMapping("test")
 public class TestController {
 	

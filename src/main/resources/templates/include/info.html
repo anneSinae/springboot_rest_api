@@ -12,7 +12,7 @@
 				<div class="userInfo_nm">
 					<b th:text="${userName}"></b>님
 				</div>
-                <form id="logoutForm" action="/logout" method="post">
-                    <a class="btn colorGyLine btn_logout" onclick="logout()">로그아웃</a>
+                <form id="logoutForm" th:action="@{/user/logout}" method="post">
+                    <button class="btn colorGyLine btn_logout">로그아웃</button>
                 </form>
 </th:block>

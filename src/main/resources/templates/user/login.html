@@ -8,24 +8,24 @@
     <title>login</title>
 </head>
     	<div layout:fragment="container_user" class="login">
-		    <h1 class="lg_tit"><th:block th:replace="include/info :: .system_nm"></th:block></h1>
+		    <h1 class="lg_tit"><a href="/"><th:block th:replace="include/info :: .system_nm"></th:block></a></h1>
 		    <h2 class="lg_titEn"><th:block th:replace="include/info :: .system_nmEn"></th:block></h2>
 		    
 		    <div class="lg_form">
-		        <form id="loginInfo" name="frm" action="/login_proc" method="post">
+		        <form id="loginInfo" th:action="@{/user/loginProc}" method="post">
                     <h3>로그인</h3>
                     <div class="item">
-                        <input type="text" id="userId" name="userId"><label for="userId">아이디</label>
+                        <input type="text" id="id" name="username"><label for="id">아이디</label>
                     </div>
                     <div class="item">
-                        <input type="password" id="userPw" name="password"><label for="userPw">비밀번호</label>
+                        <input type="password" id="password" name="password"><label for="password">비밀번호</label>
                     </div>
 		            <div class="note" th:if="${param.error}">
 		                사용자ID 또는 비밀번호를 확인해 주세요.
 		            </div>
                     <div class="btn_set">
-                        <a class="btn colorBl btn_login">로그인</a>
-                    	<a href="/sign_up" class="btn colorBl btn_signup">회원가입</a>
+                    	<button type="submit" class="btn colorBl btn_login">로그인</button>
+                    	<a href="/user/signup" class="btn colorBl btn_signup">회원가입</a>
                     </div>
 				</form>
 		    </div>

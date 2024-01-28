@@ -75,13 +75,14 @@ table .btn:not(.stat) {width: 70px;}
 
 
 /*************************************  login *************************************/
-#container_user {position: absolute; width: 100%; height: 100%; padding-top: 120px; background: url(../img/bg_login.png) no-repeat; text-align: center;}
-#container_user .login {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
-#container_user .lg_tit {font-size: 4.2rem; color: #fff; font-weight: 600;}
-#container_user .lg_titEn {margin-top: 5px; font-size: 1.14rem; color: #7B818F;}
-#container_user .lg_form {width: 480px; padding: 50px 60px 60px; margin: 100px auto 0; border-radius: 10px; background: #131519;}
+#container_user {position: absolute; width: 100%; background: url(../img/bg_login.png) no-repeat; text-align: center;}
+#container_user.login {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
+#container_user.signup {position: absolute; top: 50%; width: 100%; transform: translateY(-51%); text-align: center;}
+#container_user .lg_tit {font-size: 2.2rem; color: #fff; font-weight: 600;}
+#container_user .lg_titEn {margin-top: 5px; font-size: 1rem; color: #7B818F;}
+#container_user .lg_form {width: 480px; padding: 40px 40px 40px; margin: 30px auto 0; border-radius: 10px; background: #131519;}
 #container_user .lg_form h3 {margin-bottom: 40px; font-size: 2rem; font-weight: 600;}
-#container_user .lg_form .item {display: flex; flex-direction: column; margin-top: 20px; text-align:left;}
+#container_user .lg_form .item {display: flex; flex-direction: column; margin-top: 10px; text-align:left;}
 #container_user .lg_form input {height: 52px; order: 2; margin-top: 8px; padding: 0 20px; background: transparent; font-size: 1.14rem; transition: 0.5s;}
 #container_user .lg_form .btn_set {margin-top: 40px;}
 #container_user .lg_form .btn_set .btn {width: 100%; height: 52px; font-size: 1.14rem;}
