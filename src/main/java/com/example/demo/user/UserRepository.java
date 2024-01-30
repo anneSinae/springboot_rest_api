@@ -53,4 +53,11 @@ public class UserRepository {
 				.addValue("email", user.getEmail()); 
 		return jdbcTmpl.update(sql, param);
 	}
+	
+	public int chkDuplicatedId(String id) {
+		String sql = "select count(*) from users where id = :id";
+		return jdbcTmpl.queryForObject(sql, new MapSqlParameterSource("id", id), Integer.class);
+	}
+	
+	
 }

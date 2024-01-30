@@ -18,7 +18,7 @@ public class SecurityConfig {
     	return http.csrf().disable() // why csrf disable : spring boot use not Session cookie but Local starage 
         .authorizeRequests() // begin authorize on requests
         .antMatchers("/board/**").authenticated() // add url to authorize
-        .antMatchers("admin/**").access("hasRoll('ROLE_ADMIN')")
+        .antMatchers("admin/**").access("hasRoll('ADMIN')")
         .anyRequest().permitAll() // permit another requests all
         .and()
         .formLogin()

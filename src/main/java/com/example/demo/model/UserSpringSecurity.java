@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserSpringSecurity implements UserDetails {
@@ -36,9 +37,10 @@ public class UserSpringSecurity implements UserDetails {
 	@Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collections = new ArrayList<>();
-        collections.add(() -> {
-            return user.getRole();
-        });
+        
+        for(String role : user.getRole().split(",")){ //계정당 권한을 여러개 가질 수 있다고 가정함 
+        	collections.add(new SimpleGrantedAuthority(role));
+        }
         return collections;
     }
 	

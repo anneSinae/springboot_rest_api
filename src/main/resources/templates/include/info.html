@@ -11,6 +11,8 @@
 <th:block class="login_info">
 				<div class="userInfo_nm">
 					<span sec:authorize="isAuthenticated()"><b sec:authentication="name"></b>님
+					<b sec:authorize="hasAuthority('ADMIN')">(관리자)</b>
+					<b sec:authorize="hasAuthority('USER')">(일반사용자)</b>
 					<b th:text="${#authentication.getPrincipal().getEmail()}"></b></span>
 				</div>
                 <a class="btn colorGyLine btn_logout" href="/user/logout" sec:authorize="isAuthenticated()">로그아웃</a>

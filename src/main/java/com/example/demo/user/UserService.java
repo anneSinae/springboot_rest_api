@@ -29,7 +29,6 @@ public class UserService implements UserDetailsService {
         }
         
     	UserSpringSecurity userSecurity = new UserSpringSecurity(user);
-    	//userSecurity.getAuthorities();
         return userSecurity;
     }
     
@@ -38,4 +37,10 @@ public class UserService implements UserDetailsService {
     	System.out.println("============pw: " + user.getPassword());
 		return this.userRepository.createUser(user);
 	}
+    
+    public int chkDuplicatedId(String id) {
+		return this.userRepository.chkDuplicatedId(id);
+	}
+    
+    
 }
