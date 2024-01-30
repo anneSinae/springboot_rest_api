@@ -2,8 +2,8 @@
 		<ul id="gnb">
 			<li><a href="/">홈</a></li>
 			<li><a href="/board">게시판</a></li>
-			<li><a href="/user/login">로그인</a></li>
-			<li><a href="/user/signup">회원가입</a></li>
+			<li sec:authorize="isAnonymous()"><a href="/user/login">로그인</a></li>
+			<li sec:authorize="isAnonymous()"><a href="/user/signup">회원가입</a></li>
 			<li><a href="/test">테스트</a></li>
 		</ul>
 	</nav>

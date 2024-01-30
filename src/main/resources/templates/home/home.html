@@ -8,10 +8,10 @@
     <title>home</title>
 </head>
     <div layout:fragment="container" class="home">
-		<header th:replace="include/header :: headerFragment('알람')"></header>
+		<header th:replace="include/header :: headerFragment('home')"></header>
 		
 		<div class="content">
-            Home
+            Home <span sec:authorize="${isAuthenticated()}">로그인되었습니다.</span>
 		</div><!-- //content -->
 	</div><!-- //container -->
 </html>

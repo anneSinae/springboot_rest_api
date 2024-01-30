@@ -1,12 +1,10 @@
-package com.example.demo.user;
+package com.example.demo.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.example.demo.model.User;
 
 public class UserSpringSecurity implements UserDetails {
 
@@ -15,6 +13,14 @@ public class UserSpringSecurity implements UserDetails {
 
 	public UserSpringSecurity(User user) {
 		this.user = user;
+	}
+	
+	public String getEmail() {
+		return user.getEmail();
+	}
+	
+	public String getRole() {
+		return user.getRole();
 	}
 	
 	@Override

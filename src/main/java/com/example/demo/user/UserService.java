@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserSpringSecurity;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -28,6 +29,7 @@ public class UserService implements UserDetailsService {
         }
         
     	UserSpringSecurity userSecurity = new UserSpringSecurity(user);
+    	//userSecurity.getAuthorities();
         return userSecurity;
     }
     
